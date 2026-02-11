@@ -1,0 +1,11 @@
+eim_config.toml
+
+# ESP-IDF / build artifacts
+**/build/
+**/managed_components/
+
+# local editor/cache
+.vscode/
+.cache/
+.DS_Store
+

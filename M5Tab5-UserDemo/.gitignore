@@ -1,0 +1,6 @@
+.cache
+.vscode
+build
+managed_components
+dependencies
+.DS_Store

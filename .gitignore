@@ -4,8 +4,11 @@ eim_config.toml
 **/build/
 **/managed_components/
 
+# local secrets (DO NOT COMMIT)
+.env
+**/.env
+
 # local editor/cache
 .vscode/
 .cache/
 .DS_Store
-

@@ -19,6 +19,7 @@
 #include <lwip/ip4_addr.h>
 #include <algorithm>
 #include <string.h>
+#include <wifi_secrets.h>
 
 #define TAG "wifi"
 
@@ -45,6 +46,7 @@ static esp_event_handler_instance_t s_ip_got_ip   = nullptr;
 
 static volatile bool s_force_ap = false;
 static volatile bool s_apply_sta_from_nvs = false;
+static uint32_t s_apply_sta_from_nvs_deadline_ms = 0;
 static bool s_has_sta_cfg = false;
 
 static uint32_t s_last_sta_connected_ms  = 0;
@@ -186,12 +188,25 @@ static esp_err_t http_get_root(httpd_req_t* req)
 static void wifi_request_apply_sta_from_nvs()
 {
     s_apply_sta_from_nvs = true;
+    // Give the browser time to fully receive the POST response before Wi-Fi mode changes
+    // potentially disrupt the SoftAP connection.
+    s_apply_sta_from_nvs_deadline_ms = ms_now() + 1500;
 }
 
 static esp_err_t http_post_wifi(httpd_req_t* req)
 {
     char body[512];
-    int received = httpd_req_recv(req, body, sizeof(body) - 1);
+    int received = 0;
+    int remaining = req->content_len;
+    while (remaining > 0 && received < (int)sizeof(body) - 1) {
+        int r = httpd_req_recv(req, body + received, std::min(remaining, (int)sizeof(body) - 1 - received));
+        if (r <= 0) {
+            httpd_resp_send_err(req, HTTPD_400_BAD_REQUEST, "bad request");
+            return ESP_FAIL;
+        }
+        received += r;
+        remaining -= r;
+    }
     if (received <= 0) {
         httpd_resp_send_err(req, HTTPD_400_BAD_REQUEST, "bad request");
         return ESP_FAIL;
@@ -243,9 +258,14 @@ static esp_err_t http_post_wifi(httpd_req_t* req)
 </body></html>
 )rawliteral";
     httpd_resp_set_type(req, "text/html; charset=utf-8");
-    httpd_resp_send(req, (ok1 && ok2) ? resp_ok : "save failed", HTTPD_RESP_USE_STRLEN);
+    if (ok1 && ok2) {
+        httpd_resp_send(req, resp_ok, HTTPD_RESP_USE_STRLEN);
+        wifi_request_apply_sta_from_nvs();
+    } else {
+        httpd_resp_set_status(req, "500 Internal Server Error");
+        httpd_resp_send(req, "save failed", HTTPD_RESP_USE_STRLEN);
+    }
 
-    wifi_request_apply_sta_from_nvs();
     return ESP_OK;
 }
 
@@ -256,6 +276,7 @@ static httpd_handle_t http_start()
     }
     httpd_config_t cfg = HTTPD_DEFAULT_CONFIG();
     cfg.stack_size = 8192;
+    cfg.lru_purge_enable = true;
     httpd_handle_t server = nullptr;
     if (httpd_start(&server, &cfg) != ESP_OK) {
         return nullptr;
@@ -346,10 +367,25 @@ static bool wifi_apply_sta_from_nvs()
     char pass[64] = {0};
     bool has_ssid = nvs_read_string(kNvsKeySsid, ssid, sizeof(ssid));
     if (!has_ssid || ssid[0] == '\0') {
-        return false;
+        // Optional: seed STA config from local .env at build time (do not commit .env)
+        if (TAB5_ENV_WIFI_SSID[0] == '\0') {
+            return false;
+        }
+
+        strlcpy(ssid, TAB5_ENV_WIFI_SSID, sizeof(ssid));
+        strlcpy(pass, TAB5_ENV_WIFI_PASS, sizeof(pass));
+
+        bool ok1 = nvs_write_string(kNvsKeySsid, ssid);
+        bool ok2 = nvs_write_string(kNvsKeyPass, pass);
+        s_has_sta_cfg = ok1 && ok2;
+        mclog::tagInfo(TAG, "seed wifi from .env ssid_len={} pass_len={}", (int)strlen(ssid), (int)strlen(pass));
+        if (!s_has_sta_cfg) {
+            return false;
+        }
+    } else {
+        nvs_read_string(kNvsKeyPass, pass, sizeof(pass));
+        s_has_sta_cfg = true;
     }
-    nvs_read_string(kNvsKeyPass, pass, sizeof(pass));
-    s_has_sta_cfg = true;
 
     wifi_set_state(hal::HalBase::WIFI_STA_CONNECTING);
     mclog::tagInfo(TAG, "sta connect ssid_len={} pass_len={}", (int)strlen(ssid), (int)strlen(pass));
@@ -376,8 +412,6 @@ static bool wifi_apply_sta_from_nvs()
         ESP_ERROR_CHECK(start_ret);
     }
     ESP_ERROR_CHECK(esp_wifi_connect());
-
-    http_stop();
     return true;
 }
 
@@ -405,6 +439,7 @@ static void wifi_event_handler(void* arg, esp_event_base_t event_base, int32_t e
         esp_err_t mode_ret = esp_wifi_set_mode(WIFI_MODE_STA);
         if (mode_ret == ESP_OK) {
             mclog::tagInfo(TAG, "ap disabled (sta only)");
+            http_stop();
         } else {
             mclog::tagWarn(TAG, "failed to disable ap: {}", esp_err_to_name(mode_ret));
         }
@@ -434,7 +469,13 @@ static void wifi_manager_task(void*)
         }
 
         if (s_apply_sta_from_nvs) {
+            uint32_t now = ms_now();
+            if (s_apply_sta_from_nvs_deadline_ms != 0 && now < s_apply_sta_from_nvs_deadline_ms) {
+                vTaskDelay(pdMS_TO_TICKS(50));
+                continue;
+            }
             s_apply_sta_from_nvs = false;
+            s_apply_sta_from_nvs_deadline_ms = 0;
             if (!wifi_apply_sta_from_nvs()) {
                 wifi_start_ap_only();
             }

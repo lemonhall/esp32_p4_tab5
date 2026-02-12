@@ -7,9 +7,13 @@
 #include <hal/hal.h>
 #include <mooncake_log.h>
 #include <cstdio>
+#if defined(ESP_PLATFORM)
+#include <dirent.h>
+#include <cstring>
+#endif
 
 #if LV_USE_TINY_TTF
-#include <lv_tiny_ttf.h>
+#include <src/libs/tiny_ttf/lv_tiny_ttf.h>
 #endif
 
 static const std::string _tag = "font";
@@ -23,20 +27,87 @@ struct CachedFont {
 
 CachedFont s_cached;
 
-bool ensure_sd_ready()
-{
-    if (!GetHAL()->ensureSdCardMounted()) {
-        mclog::tagWarn(_tag, "sd not mounted");
-        return false;
-    }
+static const char* kFontFsPathPrimary = "/sd/font.ttf";
 
-    FILE* f = std::fopen("/sd/font.ttf", "rb");
+static void dump_sd_root()
+{
+#if !defined(ESP_PLATFORM)
+    return;
+#else
+    DIR* dir = opendir("/sd");
+    if (!dir) {
+        mclog::tagWarn(_tag, "opendir /sd failed");
+        return;
+    }
+    int n = 0;
+    while (auto* e = readdir(dir)) {
+        if (e->d_name[0] == '\0') {
+            continue;
+        }
+        mclog::tagInfo(_tag, "sd: {}", e->d_name);
+        if (++n >= 24) {
+            break;
+        }
+    }
+    closedir(dir);
+#endif
+}
+
+static bool file_exists(const char* path)
+{
+    FILE* f = std::fopen(path, "rb");
     if (!f) {
-        mclog::tagWarn(_tag, "missing /sd/font.ttf");
         return false;
     }
     std::fclose(f);
     return true;
+}
+
+static std::string to_lower_copy(const std::string& s)
+{
+    std::string out = s;
+    for (auto& c : out) {
+        if (c >= 'A' && c <= 'Z') {
+            c = (char)(c - 'A' + 'a');
+        }
+    }
+    return out;
+}
+
+static bool locate_font(std::string& out_fs_path, std::string& out_lvgl_path)
+{
+    out_fs_path.clear();
+    out_lvgl_path.clear();
+
+    if (file_exists(kFontFsPathPrimary)) {
+        out_fs_path = kFontFsPathPrimary;
+        out_lvgl_path = "S:/sd/font.ttf";
+        return true;
+    }
+
+#if defined(ESP_PLATFORM)
+    // FATFS can be configured case-sensitive; try locate font.ttf case-insensitively.
+    DIR* dir = opendir("/sd");
+    if (!dir) {
+        return false;
+    }
+    std::string want = "font.ttf";
+    while (auto* e = readdir(dir)) {
+        if (e->d_name[0] == '\0') {
+            continue;
+        }
+        std::string name = e->d_name;
+        if (to_lower_copy(name) == want) {
+            out_fs_path = std::string("/sd/") + name;
+            out_lvgl_path = std::string("S:/sd/") + name;
+            closedir(dir);
+            return true;
+        }
+    }
+    closedir(dir);
+#endif
+
+    return false;
 }
 
 }  // namespace
@@ -56,7 +127,8 @@ const lv_font_t* fonts::get_sd_ttf_font(int32_t font_size)
         return s_cached.font;
     }
 
-    if (!ensure_sd_ready()) {
+    if (!GetHAL()->ensureSdCardMounted()) {
+        mclog::tagWarn(_tag, "sd not mounted");
         return nullptr;
     }
 
@@ -66,7 +138,15 @@ const lv_font_t* fonts::get_sd_ttf_font(int32_t font_size)
         s_cached.size = 0;
     }
 
-    lv_font_t* f = lv_tiny_ttf_create_file("S:/sd/font.ttf", font_size);
+    std::string fs_path;
+    std::string lvgl_path;
+    if (!locate_font(fs_path, lvgl_path)) {
+        mclog::tagWarn(_tag, "missing /sd/font.ttf");
+        dump_sd_root();
+        return nullptr;
+    }
+
+    lv_font_t* f = lv_tiny_ttf_create_file(lvgl_path.c_str(), font_size);
     if (!f) {
         mclog::tagError(_tag, "lv_tiny_ttf_create_file failed");
         return nullptr;
@@ -74,8 +154,7 @@ const lv_font_t* fonts::get_sd_ttf_font(int32_t font_size)
 
     s_cached.size = font_size;
     s_cached.font = f;
-    mclog::tagInfo(_tag, "loaded /sd/font.ttf size={}", font_size);
+    mclog::tagInfo(_tag, "loaded font size={} path={}", font_size, lvgl_path);
     return s_cached.font;
 #endif
 }
-

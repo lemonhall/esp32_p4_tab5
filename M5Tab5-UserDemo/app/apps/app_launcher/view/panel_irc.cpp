@@ -15,6 +15,9 @@
 #include <hal/hal.h>
 #include <lvgl.h>
 #include <memory>
+#include <algorithm>
+#include <cctype>
+#include <cstdio>
 #include <mooncake_log.h>
 #include <smooth_ui_toolkit.h>
 #include <smooth_lvgl.h>
@@ -24,9 +27,6 @@ using namespace smooth_ui_toolkit;
 using namespace smooth_ui_toolkit::lvgl_cpp;
 
 static const std::string _tag = "panel-irc";
-
-static const ui::Window::KeyFrame_t _kf_irc_close = {610, 300, 90, 90, 0};
-static const ui::Window::KeyFrame_t _kf_irc_open  = {-620, -340, 1240, 680, 255};
 
 static std::string wifi_state_to_text(hal::HalBase::WifiState_t st)
 {
@@ -46,11 +46,23 @@ class IrcWindow : public ui::Window {
 public:
     IrcWindow()
     {
-        config.kfClosed = _kf_irc_close;
-        config.kfOpened = _kf_irc_open;
         config.closeBtn = true;
         config.clickBgClose = false;
-        config.title = "IRC";
+        config.title = "";
+    }
+
+    void init(lv_obj_t* parent) override
+    {
+        int pw = lv_obj_get_width(parent);
+        int ph = lv_obj_get_height(parent);
+
+        // Keyframe coordinates are offsets from center (Window aligns to center).
+        config.kfOpened = {0, 0, (int16_t)pw, (int16_t)ph, 255};
+
+        // Closed state animates back to the launcher button near bottom-right.
+        config.kfClosed = {(int16_t)(pw / 2 - 30), (int16_t)(ph / 2 - 60), 110, 110, 0};
+
+        ui::Window::init(parent);
     }
 
     void onOpen() override
@@ -58,15 +70,11 @@ public:
         _window->setScrollbarMode(LV_SCROLLBAR_MODE_OFF);
 
         _status = std::make_unique<Label>(_window->get());
-        _status->align(LV_ALIGN_TOP_LEFT, 18, 12);
         _status->setTextFont(&lv_font_montserrat_18);
         _status->setTextColor(lv_color_hex(0xDEDEDE));
         _status->setLongMode(LV_LABEL_LONG_CLIP);
-        _status->setSize(1200, 24);
 
         _log = std::make_unique<TextArea>(_window->get());
-        _log->setSize(1200, 520);
-        _log->align(LV_ALIGN_TOP_LEFT, 18, 48);
         _log->setMaxLength(8192);
         _log->setCursorClickPos(false);
         _log->setText("");
@@ -81,12 +89,31 @@ public:
             _log->setTextFont(cn);
         } else {
             _log->setTextFont(&lv_font_montserrat_18);
-            _log->addText("! missing /sd/font.ttf (or tiny_ttf unavailable), fallback to default font\n");
+            if (!GetHAL()->ensureSdCardMounted()) {
+                _log->addText("! SD not mounted. Re-insert SD card and reboot.\n");
+            } else {
+                _log->addText("! font.ttf not found on SD root.\n");
+                // Show a quick directory listing to help diagnose filename/path issues.
+                auto entries = GetHAL()->scanSdCard("");
+                if (entries.empty()) {
+                    _log->addText("! /sd is empty (or scan failed)\n");
+                } else {
+                    _log->addText("* /sd top files:\n");
+                    int shown = 0;
+                    for (const auto& e : entries) {
+                        if (e.isDir) {
+                            continue;
+                        }
+                        _log->addText("  - " + e.name + "\n");
+                        if (++shown >= 12) {
+                            break;
+                        }
+                    }
+                }
+            }
         }
 
         _btn_connect = std::make_unique<Button>(_window->get());
-        _btn_connect->setSize(220, 56);
-        _btn_connect->align(LV_ALIGN_BOTTOM_LEFT, 18, -16);
         _btn_connect->setBgColor(lv_color_hex(0x3B3B3B));
         _btn_connect->setRadius(16);
         _btn_connect->label().setTextFont(&lv_font_montserrat_22);
@@ -94,12 +121,14 @@ public:
         _btn_connect->label().setText("Connect");
         _btn_connect->onClick().connect([&] {
             audio::play_next_tone_progression();
-            connect_if_possible();
+            mclog::tagInfo(_tag, "connect clicked");
+            if (_log) {
+                _log->addText("* Connect clicked\n");
+            }
+            connect_if_possible(true);
         });
 
         _btn_send_test = std::make_unique<Button>(_window->get());
-        _btn_send_test->setSize(320, 56);
-        _btn_send_test->align(LV_ALIGN_BOTTOM_LEFT, 252, -16);
         _btn_send_test->setBgColor(lv_color_hex(0x2D5BFF));
         _btn_send_test->setRadius(16);
         _btn_send_test->label().setTextFont(&lv_font_montserrat_22);
@@ -111,8 +140,6 @@ public:
         });
 
         _btn_voice = std::make_unique<Button>(_window->get());
-        _btn_voice->setSize(220, 56);
-        _btn_voice->align(LV_ALIGN_BOTTOM_RIGHT, -18, -16);
         _btn_voice->setBgColor(lv_color_hex(0x616161));
         _btn_voice->setRadius(16);
         _btn_voice->label().setTextFont(&lv_font_montserrat_22);
@@ -130,12 +157,15 @@ public:
         _irc_cfg.realname = "Tab5";
         _irc_cfg.auto_join_channel = "#tab5";
 
-        connect_if_possible();
+        apply_layout(true);
+        connect_if_possible(false);
         refresh_status();
     }
 
     void onUpdate() override
     {
+        apply_layout(false);
+
         if (_state != Opened) {
             return;
         }
@@ -160,20 +190,68 @@ public:
     }
 
 private:
-    void connect_if_possible()
+    void apply_layout(bool force)
+    {
+        if (!_window || !_status || !_log || !_btn_connect || !_btn_send_test || !_btn_voice) {
+            return;
+        }
+
+        int w = lv_obj_get_width(_window->get());
+        int h = lv_obj_get_height(_window->get());
+        if (!force && w == _last_layout_w && h == _last_layout_h) {
+            return;
+        }
+        _last_layout_w = w;
+        _last_layout_h = h;
+
+        int pad = 18;
+        int top = 16;
+        int status_h = 28;
+        int btn_h = 56;
+        int btn_gap = 14;
+        int bottom = 16;
+
+        _status->align(LV_ALIGN_TOP_LEFT, pad, top);
+        _status->setSize(std::max(0, w - pad * 2), status_h);
+
+        int log_y = top + status_h + 10;
+        int log_h = std::max(120, h - log_y - bottom - btn_h);
+        _log->align(LV_ALIGN_TOP_LEFT, pad, log_y);
+        _log->setSize(std::max(0, w - pad * 2), std::max(0, log_h));
+
+        _btn_connect->setSize(220, btn_h);
+        _btn_connect->align(LV_ALIGN_BOTTOM_LEFT, pad, -bottom);
+
+        _btn_send_test->setSize(320, btn_h);
+        _btn_send_test->align(LV_ALIGN_BOTTOM_LEFT, pad + 220 + btn_gap, -bottom);
+
+        _btn_voice->setSize(220, btn_h);
+        _btn_voice->align(LV_ALIGN_BOTTOM_RIGHT, -pad, -bottom);
+    }
+
+    void connect_if_possible(bool force_restart)
     {
         if (!GetHAL()->isWifiStaConnected()) {
             ui::pop_a_toast("Wi-Fi not connected. Use AP setup: 192.168.4.1", ui::toast_type::warning);
-            _log->addText("! Wi-Fi not connected. Connect to AP and open http://192.168.4.1\n");
+            if (_log) {
+                _log->addText("! Wi-Fi not connected. Connect to AP and open http://192.168.4.1\n");
+            }
             return;
         }
 
-        if (_irc.state() == net::IrcClient::Connecting || _irc.state() == net::IrcClient::Connected ||
-            _irc.state() == net::IrcClient::Joined) {
-            return;
+        if (!force_restart) {
+            if (_irc.state() == net::IrcClient::Connecting || _irc.state() == net::IrcClient::Connected ||
+                _irc.state() == net::IrcClient::Joined) {
+                ui::pop_a_toast("IRC is already running", ui::toast_type::info);
+                return;
+            }
         }
 
+        if (force_restart) {
+            _irc.stop();
+        }
         _irc.start(_irc_cfg);
+        ui::pop_a_toast("IRC connecting...", ui::toast_type::info);
     }
 
     void refresh_status()
@@ -210,8 +288,30 @@ private:
 
         _status->setText("Wi-Fi: " + wifi + (ip.empty() ? "" : (" ip=" + ip)) + " | IRC: " + irc_st +
                          " | Nick: " + nick + " | #tab5");
+
+        if (_btn_connect) {
+            const char* label = "Connect";
+            switch (_irc.state()) {
+            case net::IrcClient::Connecting:
+                label = "Connecting";
+                break;
+            case net::IrcClient::Connected:
+            case net::IrcClient::Joined:
+                label = "Connected";
+                break;
+            case net::IrcClient::Error:
+            case net::IrcClient::Disconnected:
+                label = "Retry";
+                break;
+            default:
+                break;
+            }
+            _btn_connect->label().setText(label);
+        }
     }
 
+    int _last_layout_w = -1;
+    int _last_layout_h = -1;
     uint32_t _last_status_ms = 0;
     std::unique_ptr<Label> _status;
     std::unique_ptr<TextArea> _log;

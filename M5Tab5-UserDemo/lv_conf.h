@@ -702,10 +702,14 @@
 #define LV_FS_DEFAULT_DRIVE_LETTER '\0'
 
 /*API for fopen, fread, etc*/
+#if defined(ESP_PLATFORM)
+#define LV_USE_FS_STDIO 1
+#else
 #define LV_USE_FS_STDIO 0
+#endif
 #if LV_USE_FS_STDIO
-    #define LV_FS_STDIO_LETTER '\0'     /*Set an upper cased letter on which the drive will accessible (e.g. 'A')*/
-    #define LV_FS_STDIO_PATH ""         /*Set the working directory. File/directory paths will be appended to it.*/
+    #define LV_FS_STDIO_LETTER 'S'      /*SD: use paths like "S:/sd/font.ttf" (mapped to "/sd/font.ttf")*/
+    #define LV_FS_STDIO_PATH ""         /*ESP-IDF VFS provides stdio file APIs*/
     #define LV_FS_STDIO_CACHE_SIZE 0    /*>0 to cache this number of bytes in lv_fs_read()*/
 #endif
 
@@ -806,10 +810,18 @@
 #endif
 
 /* Built-in TTF decoder */
+#if defined(ESP_PLATFORM)
+#define LV_USE_TINY_TTF 1
+#else
 #define LV_USE_TINY_TTF 0
+#endif
 #if LV_USE_TINY_TTF
     /* Enable loading TTF data from files */
-    #define LV_TINY_TTF_FILE_SUPPORT 0
+    #if defined(ESP_PLATFORM)
+        #define LV_TINY_TTF_FILE_SUPPORT 1
+    #else
+        #define LV_TINY_TTF_FILE_SUPPORT 0
+    #endif
     #define LV_TINY_TTF_CACHE_GLYPH_CNT 256
 #endif
 

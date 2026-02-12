@@ -140,9 +140,36 @@ bool HalDesktop::getExtAntennaEnable()
 }
 
 /* -------------------------------------------------------------------------- */
+/*                                    Wi-Fi                                   */
+/* -------------------------------------------------------------------------- */
+void HalDesktop::startWifiManager()
+{
+}
+
+hal::HalBase::WifiState_t HalDesktop::getWifiState()
+{
+    return WIFI_STOPPED;
+}
+
+bool HalDesktop::isWifiStaConnected()
+{
+    return false;
+}
+
+std::string HalDesktop::getWifiStaIp()
+{
+    return "";
+}
+
+/* -------------------------------------------------------------------------- */
 /*                                   SD card                                  */
 /* -------------------------------------------------------------------------- */
 bool HalDesktop::isSdCardMounted()
+{
+    return true;
+}
+
+bool HalDesktop::ensureSdCardMounted()
 {
     return true;
 }

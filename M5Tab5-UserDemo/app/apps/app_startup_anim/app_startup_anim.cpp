@@ -94,7 +94,7 @@ void AppStartupAnim::onRunning()
         if (_anim_logo_5_x.done()) {
             _anime_state = AnimState_FinalDelay;
             _time_count  = GetHAL()->millis();
-            GetHAL()->startWifiAp();
+            GetHAL()->startWifiManager();
         }
         if (!_is_sfx_played) {
             if (_anim_logo_5_x.directValue() < 90) {

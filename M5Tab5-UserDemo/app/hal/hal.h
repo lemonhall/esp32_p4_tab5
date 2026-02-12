@@ -247,12 +247,34 @@ public:
     }
 
     /* --------------------------------- Network -------------------------------- */
+    enum WifiState_t {
+        WIFI_STOPPED = 0,
+        WIFI_PROVISIONING_AP,
+        WIFI_STA_CONNECTING,
+        WIFI_STA_CONNECTED,
+    };
+
     virtual void setExtAntennaEnable(bool enable)
     {
     }
     virtual bool getExtAntennaEnable()
     {
         return false;
+    }
+    virtual void startWifiManager()
+    {
+    }
+    virtual WifiState_t getWifiState()
+    {
+        return WIFI_STOPPED;
+    }
+    virtual bool isWifiStaConnected()
+    {
+        return false;
+    }
+    virtual std::string getWifiStaIp()
+    {
+        return "";
     }
     virtual void startWifiAp()
     {
@@ -266,6 +288,10 @@ public:
     virtual bool isSdCardMounted()
     {
         return false;
+    }
+    virtual bool ensureSdCardMounted()
+    {
+        return isSdCardMounted();
     }
     virtual std::vector<FileEntry_t> scanSdCard(const std::string& dirPath)
     {

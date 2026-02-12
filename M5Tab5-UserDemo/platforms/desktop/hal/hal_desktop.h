@@ -52,7 +52,13 @@ public:
     void setExtAntennaEnable(bool enable) override;
     bool getExtAntennaEnable() override;
 
+    void startWifiManager() override;
+    WifiState_t getWifiState() override;
+    bool isWifiStaConnected() override;
+    std::string getWifiStaIp() override;
+
     bool isSdCardMounted() override;
+    bool ensureSdCardMounted() override;
     std::vector<FileEntry_t> scanSdCard(const std::string& dirPath) override;
 
     bool usbCDetect() override;

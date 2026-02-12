@@ -74,8 +74,15 @@ public:
     void setExtAntennaEnable(bool enable) override;
     bool getExtAntennaEnable() override;
     void startWifiAp() override;
+    void startWifiManager() override;
+    WifiState_t getWifiState() override;
+    bool isWifiStaConnected() override;
+    std::string getWifiStaIp() override;
+
+    void setWifiState(WifiState_t state, const std::string& ip = "");
 
     bool isSdCardMounted() override;
+    bool ensureSdCardMounted() override;
     std::vector<FileEntry_t> scanSdCard(const std::string& dirPath) override;
 
     bool usbCDetect() override;
@@ -103,4 +110,6 @@ private:
     bool _usba_5v_enable            = true;
     bool _ext_antenna_enable        = false;
     bool _sd_card_mounted           = false;
+    WifiState_t _wifi_state         = WIFI_STOPPED;
+    std::string _wifi_sta_ip;
 };

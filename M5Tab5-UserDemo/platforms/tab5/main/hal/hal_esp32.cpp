@@ -126,6 +126,14 @@ void HalEsp32::init()
     bsp_display_unlock();
 }
 
+void HalEsp32::setWifiState(WifiState_t state, const std::string& ip)
+{
+    _wifi_state = state;
+    if (state == WIFI_STA_CONNECTED) {
+        _wifi_sta_ip = ip;
+    }
+}
+
 static const gpio_num_t _driver_gpios[] = {
     // EXT I2C
     GPIO_NUM_0,
@@ -272,6 +280,23 @@ void HalEsp32::update_system_time()
 
 bool HalEsp32::isSdCardMounted()
 {
+    return _sd_card_mounted;
+}
+
+bool HalEsp32::ensureSdCardMounted()
+{
+    if (_sd_card_mounted) {
+        return true;
+    }
+
+    mclog::tagInfo(_tag, "mount sd card");
+    char mount_point[] = "/sd";
+    if (bsp_sdcard_init(mount_point, 25) != ESP_OK) {
+        mclog::error("failed to mount sd card");
+        return false;
+    }
+
+    _sd_card_mounted = true;
     return true;
 }
 
@@ -279,9 +304,7 @@ std::vector<hal::HalBase::FileEntry_t> HalEsp32::scanSdCard(const std::string& d
 {
     std::vector<hal::HalBase::FileEntry_t> file_entries;
 
-    mclog::tagInfo(_tag, "init sd card");
-    if (bsp_sdcard_init("/sd", 25) != ESP_OK) {
-        mclog::error("failed to mount sd card");
+    if (!ensureSdCardMounted()) {
         return file_entries;
     }
 
@@ -306,9 +329,6 @@ std::vector<hal::HalBase::FileEntry_t> HalEsp32::scanSdCard(const std::string& d
     }
 
     closedir(dir);
-
-    mclog::tagInfo(_tag, "deinit sd card");
-    bsp_sdcard_deinit("/sd");
 
     return file_entries;
 }

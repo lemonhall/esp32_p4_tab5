@@ -105,6 +105,10 @@ app_main()
 - **不要“升级依赖试试”**：`idf.py update-dependencies` 会改 `dependencies.lock`，除非你就是要做升级验证，否则不要动；若要升级，必须说明原因并给出回滚方式。
 - **危险文件操作要确认**：`Remove-Item -Recurse -Force`、大范围删除/覆盖前必须先问用户。
 
+## 暗语（协作快捷指令）
+为避免来回解释、也防止误刷，约定以下“暗语”：
+- **“绿闪了”**：你已确认设备处于下载模式（绿灯快速闪烁），并授权我执行 `idf.py -p COM6 -b 460800 flash`（仍不包含 `erase_flash`，除非你明确说要擦除）。
+
 ## 验证策略（最小闭环）
 - 代码改动后至少跑一次：`idf.py build`
 - 需要硬件验证时：`idf.py -p COM6 flash ; idf.py -p COM6 monitor`
@@ -112,4 +116,3 @@ app_main()
 ## 多份 AGENTS.md 覆盖规则
 - 根目录 `AGENTS.md` 适用于整个工作区
 - 若未来在子目录新增 `AGENTS.md`，则以离目标文件更近的规则为准（子目录覆盖父目录）
-

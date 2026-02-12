@@ -16,8 +16,6 @@
 #include <lvgl.h>
 #include <memory>
 #include <algorithm>
-#include <cctype>
-#include <cstdio>
 #include <mooncake_log.h>
 #include <smooth_ui_toolkit.h>
 #include <smooth_lvgl.h>
@@ -53,6 +51,15 @@ public:
 
     void init(lv_obj_t* parent) override
     {
+        _parent = parent;
+        _disp = lv_display_get_default();
+        if (_disp) {
+            _prev_rotation = lv_display_get_rotation(_disp);
+            // Default to portrait while IRC window is active
+            lv_display_set_rotation(_disp, LV_DISPLAY_ROTATION_0);
+            _restore_rotation_on_close = true;
+        }
+
         int pw = lv_obj_get_width(parent);
         int ph = lv_obj_get_height(parent);
 
@@ -68,11 +75,12 @@ public:
     void onOpen() override
     {
         _window->setScrollbarMode(LV_SCROLLBAR_MODE_OFF);
+        sync_window_frame_to_parent();
 
         _status = std::make_unique<Label>(_window->get());
         _status->setTextFont(&lv_font_montserrat_18);
         _status->setTextColor(lv_color_hex(0xDEDEDE));
-        _status->setLongMode(LV_LABEL_LONG_CLIP);
+        _status->setLongMode(LV_LABEL_LONG_WRAP);
 
         _log = std::make_unique<TextArea>(_window->get());
         _log->setMaxLength(8192);
@@ -84,11 +92,11 @@ public:
         _log->setRadius(12);
         _log->setBgColor(lv_color_hex(0x2A2A2A));
 
-        const lv_font_t* cn = fonts::get_sd_ttf_font(20);
+        const lv_font_t* cn = fonts::get_sd_ttf_font(36);
         if (cn) {
             _log->setTextFont(cn);
         } else {
-            _log->setTextFont(&lv_font_montserrat_18);
+            _log->setTextFont(&lv_font_montserrat_24);
             if (!GetHAL()->ensureSdCardMounted()) {
                 _log->addText("! SD not mounted. Re-insert SD card and reboot.\n");
             } else {
@@ -113,6 +121,37 @@ public:
             }
         }
 
+        _btn_rotate = std::make_unique<Button>(_window->get());
+        _btn_rotate->setBgColor(lv_color_hex(0x3B3B3B));
+        _btn_rotate->setRadius(16);
+        _btn_rotate->label().setTextFont(&lv_font_montserrat_20);
+        _btn_rotate->label().setTextColor(lv_color_hex(0xE7E7E7));
+        _btn_rotate->label().setText("Rotate");
+        _btn_rotate->onClick().connect([&] {
+            audio::play_next_tone_progression();
+            if (!_disp) {
+                return;
+            }
+            lv_display_rotation_t rot = lv_display_get_rotation(_disp);
+            switch (rot) {
+            case LV_DISPLAY_ROTATION_0:
+                rot = LV_DISPLAY_ROTATION_90;
+                break;
+            case LV_DISPLAY_ROTATION_90:
+                rot = LV_DISPLAY_ROTATION_180;
+                break;
+            case LV_DISPLAY_ROTATION_180:
+                rot = LV_DISPLAY_ROTATION_270;
+                break;
+            default:
+                rot = LV_DISPLAY_ROTATION_0;
+                break;
+            }
+            lv_display_set_rotation(_disp, rot);
+            sync_window_frame_to_parent();
+            apply_layout(true);
+        });
+
         _btn_connect = std::make_unique<Button>(_window->get());
         _btn_connect->setBgColor(lv_color_hex(0x3B3B3B));
         _btn_connect->setRadius(16);
@@ -133,10 +172,10 @@ public:
         _btn_send_test->setRadius(16);
         _btn_send_test->label().setTextFont(&lv_font_montserrat_22);
         _btn_send_test->label().setTextColor(lv_color_hex(0xFFFFFF));
-        _btn_send_test->label().setText("Send Test");
+        _btn_send_test->label().setText("Hello");
         _btn_send_test->onClick().connect([&] {
             audio::play_next_tone_progression();
-            _irc.send_privmsg("#tab5", "hi from " + _irc.current_nick());
+            _irc.send_privmsg("#tab5", "hello from " + _irc.current_nick());
         });
 
         _btn_voice = std::make_unique<Button>(_window->get());
@@ -166,6 +205,13 @@ public:
     {
         apply_layout(false);
 
+        // Restore rotation only after the close animation is fully finished,
+        // to avoid rotating the whole UI mid-animation.
+        if (_state == Closed && _restore_rotation_on_close && _disp) {
+            _restore_rotation_on_close = false;
+            lv_display_set_rotation(_disp, _prev_rotation);
+        }
+
         if (_state != Opened) {
             return;
         }
@@ -184,15 +230,40 @@ public:
         _irc.stop();
         _status.reset();
         _log.reset();
+        _btn_rotate.reset();
         _btn_connect.reset();
         _btn_send_test.reset();
         _btn_voice.reset();
     }
 
 private:
+    void sync_window_frame_to_parent()
+    {
+        if (!_parent) {
+            return;
+        }
+
+        int pw = lv_obj_get_width(_parent);
+        int ph = lv_obj_get_height(_parent);
+
+        config.kfOpened = {0, 0, (int16_t)pw, (int16_t)ph, 255};
+        config.kfClosed = {(int16_t)(pw / 2 - 30), (int16_t)(ph / 2 - 60), 110, 110, 0};
+
+        // Teleport window to the new opened frame if it's currently visible
+        if (_window && (_state == Opening || _state == Opened)) {
+            update_anim(config.kfOpened, true);
+        }
+
+        // Keep the invisible close hit-area aligned with the opened frame
+        if (_close_btn) {
+            _close_btn->align(LV_ALIGN_CENTER, config.kfOpened.x + config.kfOpened.w / 2 - 30,
+                              config.kfOpened.y - config.kfOpened.h / 2 + 26);
+        }
+    }
+
     void apply_layout(bool force)
     {
-        if (!_window || !_status || !_log || !_btn_connect || !_btn_send_test || !_btn_voice) {
+        if (!_window || !_status || !_log || !_btn_rotate || !_btn_connect || !_btn_send_test || !_btn_voice) {
             return;
         }
 
@@ -206,26 +277,34 @@ private:
 
         int pad = 18;
         int top = 16;
-        int status_h = 28;
+        int status_h = 52;
         int btn_h = 56;
         int btn_gap = 14;
         int bottom = 16;
 
         _status->align(LV_ALIGN_TOP_LEFT, pad, top);
-        _status->setSize(std::max(0, w - pad * 2), status_h);
+        int rotate_w = 140;
+        _status->setSize(std::max(0, w - pad * 2 - rotate_w - 10), status_h);
+
+        _btn_rotate->setSize(rotate_w, 44);
+        _btn_rotate->align(LV_ALIGN_TOP_RIGHT, -pad, top - 6);
 
         int log_y = top + status_h + 10;
         int log_h = std::max(120, h - log_y - bottom - btn_h);
         _log->align(LV_ALIGN_TOP_LEFT, pad, log_y);
         _log->setSize(std::max(0, w - pad * 2), std::max(0, log_h));
 
-        _btn_connect->setSize(220, btn_h);
+        int available = std::max(0, w - pad * 2);
+        int connect_w = 200;
+        int voice_w = 200;
+        int mid_w = std::max(120, available - connect_w - voice_w - btn_gap * 2);
+        _btn_connect->setSize(connect_w, btn_h);
         _btn_connect->align(LV_ALIGN_BOTTOM_LEFT, pad, -bottom);
 
-        _btn_send_test->setSize(320, btn_h);
-        _btn_send_test->align(LV_ALIGN_BOTTOM_LEFT, pad + 220 + btn_gap, -bottom);
+        _btn_send_test->setSize(mid_w, btn_h);
+        _btn_send_test->align(LV_ALIGN_BOTTOM_LEFT, pad + connect_w + btn_gap, -bottom);
 
-        _btn_voice->setSize(220, btn_h);
+        _btn_voice->setSize(voice_w, btn_h);
         _btn_voice->align(LV_ALIGN_BOTTOM_RIGHT, -pad, -bottom);
     }
 
@@ -286,8 +365,9 @@ private:
             break;
         }
 
-        _status->setText("Wi-Fi: " + wifi + (ip.empty() ? "" : (" ip=" + ip)) + " | IRC: " + irc_st +
-                         " | Nick: " + nick + " | #tab5");
+        std::string line1 = "Wi-Fi: " + wifi + (ip.empty() ? "" : ("  ip=" + ip));
+        std::string line2 = std::string("IRC: ") + irc_st + "  Nick: " + nick + "  #tab5";
+        _status->setText(line1 + "\n" + line2);
 
         if (_btn_connect) {
             const char* label = "Connect";
@@ -315,12 +395,18 @@ private:
     uint32_t _last_status_ms = 0;
     std::unique_ptr<Label> _status;
     std::unique_ptr<TextArea> _log;
+    std::unique_ptr<Button> _btn_rotate;
     std::unique_ptr<Button> _btn_connect;
     std::unique_ptr<Button> _btn_send_test;
     std::unique_ptr<Button> _btn_voice;
 
     net::IrcClient _irc;
     net::IrcClient::Config _irc_cfg;
+
+    lv_obj_t* _parent = nullptr;
+    lv_display_t* _disp = nullptr;
+    lv_display_rotation_t _prev_rotation = LV_DISPLAY_ROTATION_0;
+    bool _restore_rotation_on_close = false;
 };
 
 void PanelIrc::init()

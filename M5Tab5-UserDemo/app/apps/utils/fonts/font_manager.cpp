@@ -146,7 +146,9 @@ const lv_font_t* fonts::get_sd_ttf_font(int32_t font_size)
         return nullptr;
     }
 
-    lv_font_t* f = lv_tiny_ttf_create_file(lvgl_path.c_str(), font_size);
+    // Chinese-heavy UIs are glyph-dense. The default tiny_ttf glyph cache (256) can thrash and cause long
+    // render times, potentially tripping the task watchdog. Use a larger cache and disable kerning.
+    lv_font_t* f = lv_tiny_ttf_create_file_ex(lvgl_path.c_str(), font_size, LV_FONT_KERNING_NONE, 2048);
     if (!f) {
         mclog::tagError(_tag, "lv_tiny_ttf_create_file failed");
         return nullptr;

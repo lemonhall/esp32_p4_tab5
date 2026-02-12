@@ -1,0 +1,1633 @@
+[0;33m--- Warning: GDB cannot open serial ports accessed as COMx[0m
+ESP-ROM:esp32p4-eco2-20240710
+[0;33m--- Using \\.\COM6 instead...[0m
+Build:Jul 10 2024
+[0;33m--- esp-idf-monitor 1.9.0 on \\.\COM6 115200[0m
+rst:0x17 (CHIP_USB_UART_RESET),boot:0x204 (DOWNLOAD(USB/UART0/SPI))
+--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H
+waiting for download
+--- Error: ClearCommError failed (PermissionError(13, '设备不识别此命令。', None, 22))
+--- Waiting for the device to reconnect.
+ESP-ROM:esp32p4-eco2-20240710
+Build:Jul 10 2024
+rst:0x7 (HP_SYS_HP_WDT_RESET),boot:0x20c (SPI_FAST_FLASH_BOOT)
+SPI mode:DIO, clock div:1
+load:0x4ff33ce0,len:0x1744
+load:0x4ff2abd0,len:0xea8
+load:0x4ff2cbd0,len:0x341c
+entry 0x4ff2abda
+I (22) boot: ESP-IDF v5.4.2-dirty 2nd stage bootloader
+I (23) boot: compile time Feb 12 2026 18:11:52
+I (23) boot: Multicore bootloader
+I (24) boot: chip revision: v1.3
+I (25) boot: efuse block revision: v0.3
+I (25) qio_mode: Enabling default flash chip QIO
+I (25) boot.esp32p4: SPI Speed      : 80MHz
+I (25) boot.esp32p4: SPI Mode       : QIO
+I (26) boot.esp32p4: SPI Flash Size : 16MB
+W (26) boot.esp32p4: CPU has been reset by WDT.
+I (26) boot: Enabling RNG early entropy source...
+I (27) boot: Partition Table:
+I (27) boot: ## Label            Usage          Type ST Offset   Length
+I (27) boot:  0 nvs              WiFi data        01 02 00009000 00006000
+I (28) boot:  1 phy_init         RF data          01 01 0000f000 00001000
+I (28) boot:  2 factory          factory app      00 00 00010000 00a00000
+I (29) boot:  3 human_face_det   Unknown data     01 82 00a10000 00064000
+I (29) boot:  4 storage          Unknown data     01 82 00a74000 00200000
+I (31) boot: End of partition table
+I (31) esp_image: segment 0: paddr=00010020 vaddr=481b0020 size=418284h (4293252) map
+I (687) esp_image: segment 1: paddr=004282ac vaddr=30100000 size=00068h (   104) load
+I (688) esp_image: segment 2: paddr=0042831c vaddr=4ff00000 size=07cfch ( 31996) load
+I (696) esp_image: segment 3: paddr=00430020 vaddr=48000020 size=1a0760h (1705824) map
+I (957) esp_image: segment 4: paddr=005d0788 vaddr=4ff07cfc size=1f630h (128560) load
+I (982) esp_image: segment 5: paddr=005efdc0 vaddr=4ff27380 size=02d78h ( 11640) load
+I (985) esp_image: segment 6: paddr=005f2b40 vaddr=4ff40000 size=01834h (  6196) load
+I (988) esp_image: segment 7: paddr=005f437c vaddr=50108080 size=0001ch (    28) load
+I (997) boot: Loaded app from partition at offset 0x10000
+I (997) boot: Disabling RNG early entropy source...
+I (1000) hex_psram: vendor id    : 0x0d (AP)
+I (1000) hex_psram: Latency      : 0x01 (Fixed)
+I (1000) hex_psram: DriveStr.    : 0x00 (25 Ohm)
+I (1000) hex_psram: dev id       : 0x03 (generation 4)
+I (1001) hex_psram: density      : 0x07 (256 Mbit)
+I (1001) hex_psram: good-die     : 0x06 (Pass)
+I (1001) hex_psram: SRF          : 0x02 (Slow Refresh)
+I (1001) hex_psram: BurstType    : 0x00 ( Wrap)
+I (1002) hex_psram: BurstLen     : 0x03 (2048 Byte)
+--- 0x4800b1da: transport_drv_sta_tx at E:/development/esp32_p4_tab5/M5Tab5-UserDemo/platforms/tab5/managed_components/espressif__esp_hosted/host/drivers/transport/transport_drv.c:219
+I (1002) hex_psram: BitMode      : 0x01 (X16 Mode)
+--- 0x480189d8: esp_wifi_remote_channel_rx at E:/development/esp32_p4_tab5/M5Tab5-UserDemo/platforms/tab5/managed_components/espressif__esp_wifi_remote/esp_wifi_remote_net.c:19
+I (1002) hex_psram: Readlatency  : 0x04 (14 cycles@Fixed)
+I (1003) hex_psram: DriveStrength: 0x00 (1/1)
+I (1003) MSPI DQS: tuning success, best phase id is 0
+--- 0x4800b120: transport_drv_ap_tx at E:/development/esp32_p4_tab5/M5Tab5-UserDemo/platforms/tab5/managed_components/espressif__esp_hosted/host/drivers/transport/transport_drv.c:249
+I (1171) MSPI DQS: tuning success, best delayline id is 17
+--- 0x480189d8: esp_wifi_remote_channel_rx at E:/development/esp32_p4_tab5/M5Tab5-UserDemo/platforms/tab5/managed_components/espressif__esp_wifi_remote/esp_wifi_remote_net.c:19
+I esp_psram: Found 32MB PSRAM device
+I esp_psram: Speed: 200MHz
+I (1375) mmu_psram: .rodata xip on psram
+I (1458) mmu_psram: .text xip on psram
+I (1458) hex_psram: psram CS IO is dedicated
+I (1458) cpu_start: Multicore app
+I (1848) esp_psram: SPI SRAM memory test OK
+I (1858) cpu_start: Pro cpu start user code
+I (1858) cpu_start: cpu freq: 360000000 Hz
+I (1858) app_init: Application information:
+I (1858) app_init: Project name:     m5stack_tab5
+I (1859) app_init: App version:      f4eb80b-dirty
+I (1859) app_init: Compile time:     Feb 12 2026 18:29:45
+I (1859) app_init: ELF file SHA256:  a46b2345b...
+I (1859) app_init: ESP-IDF:          v5.4.2-dirty
+I (1860) efuse_init: Min chip rev:     v0.1
+I (1860) efuse_init: Max chip rev:     v1.99 
+I (1860) efuse_init: Chip rev:         v1.3
+I (1860) heap_init: Initializing. RAM available for dynamic allocation:
+I (1860) heap_init: At 4FF2A500 len 00010AC0 (66 KiB): RAM
+I (1861) heap_init: At 4FF3AFC0 len 00004BF0 (18 KiB): RAM
+I (1861) heap_init: At 4FF47400 len 00038C00 (227 KiB): RAM
+I (1861) heap_init: At 5010809C len 00007F64 (31 KiB): RTCRAM
+I (1861) heap_init: At 30100068 len 00001F98 (7 KiB): TCM
+I (1862) esp_psram: Adding pool of 26816K of PSRAM memory to heap allocator
+I (1862) esp_psram: Adding pool of 62K of PSRAM memory gap generated due to end address alignment of irom to the heap allocator
+I (1863) esp_psram: Adding pool of 31K of PSRAM memory gap generated due to end address alignment of drom to the heap allocator
+I (1863) spi_flash: detected chip: generic
+I (1864) spi_flash: flash io: qio
+I (1864) host_init: ESP Hosted : Host chip_ip[18]
+I (1864) H_API: ESP-Hosted starting. Hosted_Tasks: prio:23, stack: 5120 RPC_task_stack: 5120
+sdio_mempool_create free:27647752 min-free:27647752 lfb-def:27262976 lfb-8bit:27262976
+
+I (1865) gpio: GPIO[12]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 
+I (1865) gpio: GPIO[13]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 
+I (1865) gpio: GPIO[11]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 
+I (1866) gpio: GPIO[10]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 
+I (1866) gpio: GPIO[9]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 
+I (1866) gpio: GPIO[8]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 
+I (1867) H_API: ** add_esp_wifi_remote_channels **
+I (1867) transport: Add ESP-Hosted channel IF[1]: S[0] Tx[0x4800b1da] Rx[0x480189d8]
+I (1867) transport: Add ESP-Hosted channel IF[2]: S[0] Tx[0x4800b120] Rx[0x480189d8]
+I (1868) main_task: Started on CPU0
+I (1869) esp_psram: Reserving pool of 32K of internal memory for DMA/internal allocations
+I (1869) main_task: Calling app_main()
+[1970-01-01 00:00:00.011] [[32minfo] [app] init
+[1970-01-01 00:00:00.012] [[32minfo] [app] hal injection
+[1970-01-01 00:00:00.012] [[32minfo] [hal] injecting hal type: Tab5
+[1970-01-01 00:00:00.012] [[32minfo] [hal] invoke init
+[1970-01-01 00:00:00.013] [[32minfo] [hal] init
+[1970-01-01 00:00:00.013] [[32minfo] [hal] camera init
+W (1871) ledc: the binded timer can't keep alive in sleep
+[1970-01-01 00:00:00.013] [[32minfo] [hal] i2c init
+[1970-01-01 00:00:00.014] [[32minfo] [hal] io expander init
+[1970-01-01 00:00:00.016] [[32minfo] [power] set charge qc enable: true
+[1970-01-01 00:00:00.066] [[32minfo] [power] set charge enable: true
+[1970-01-01 00:00:00.066] [[32minfo] [hal] i2c scan
+scan i2c device
+
+     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f
+
+00: 00 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+
+10: 10 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+
+20: -- -- -- -- -- -- -- -- 28 -- -- -- -- -- -- -- 
+
+30: -- -- 32 -- -- -- 36 -- -- -- -- -- -- -- -- -- 
+
+40: 40 41 -- 43 44 -- -- -- -- -- -- -- -- -- -- -- 
+
+50: -- -- -- -- -- 55 -- -- -- -- -- -- -- -- -- -- 
+
+60: -- -- -- -- -- -- -- -- 68 -- -- -- -- -- -- -- 
+
+70: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+
+
+scan i2c device finished
+[1970-01-01 00:00:00.088] [[32minfo] [hal] codec init
+W (2146) i2s_common: dma frame num is adjusted to 256 to align the dma buffer with 64, bufsize = 512
+I (2160) ES7210: Work in Slave mode
+I (2166) ES7210: Enable ES7210_INPUT_MIC1
+I (2169) ES7210: Enable ES7210_INPUT_MIC2
+I (2172) ES7210: Enable ES7210_INPUT_MIC3
+I (2174) ES7210: Enable ES7210_INPUT_MIC4
+I (2177) ES7210: Enable TDM mode
+I (2181) I2S_IF: channel mode 2 bits:16/16 channel:4 mask:f
+I (2181) I2S_IF: TDM Mode 0 bits:16/16 channel:4 sample_rate:48000 mask:f
+I (2181) I2S_IF: channel mode 0 bits:16/16 channel:4 mask:f
+I (2182) I2S_IF: STD Mode 1 bits:32/32 channel:4 sample_rate:48000 mask:0
+I (2183) ES7210: Bits 16
+I (2189) ES7210: Enable ES7210_INPUT_MIC1
+I (2192) ES7210: Enable ES7210_INPUT_MIC2
+I (2195) ES7210: Enable ES7210_INPUT_MIC3
+I (2198) ES7210: Enable ES7210_INPUT_MIC4
+I (2201) ES7210: Enable TDM mode
+I (2206) ES7210: Unmuted
+I (2206) Adev_Codec: Open codec device OK
+I (2207) I2S_IF: Mode 0 need extend bits 64 to 32
+I (2207) I2S_IF: channel mode 0 bits:16/32 channel:2 mask:3
+I (2207) I2S_IF: STD Mode 1 bits:16/32 channel:2 sample_rate:48000 mask:3
+I (2213) ES8388: Start on mode:2
+I (2214) Adev_Codec: Open codec device OK
+[1970-01-01 00:00:00.358] [[32minfo] [hal] imu init
+[1970-01-01 00:00:00.358] [[32minfo] [imu] imu init
+I (2499) bmi270: Set sensors odr and range
+I (2503) bmi270: Enable the selected sensors
+[1970-01-01 00:00:00.647] [[32minfo] [hal] ina226 init
+[1970-01-01 00:00:00.647] [[32minfo] [hal] bus voltage: 8.33125
+[1970-01-01 00:00:00.648] [[32minfo] [hal] rx8130 init
+rtc bat init: 0x1F: 30
+[1970-01-01 00:00:00.648] [[32minfo] [hal] clear rtc irq
+[1970-01-01 00:00:00.649] [[32minfo] [hal] update system time
+[1970-01-01 00:00:00.650] [[32minfo] [hal] sync to rtc time: 2108-01-04 21:20:14
+[2108-01-04 21:20:14.000] [[32minfo] [hal] display init
+I (2508) M5STACK_TAB5: reset tp
+I (2508) M5STACK_TAB5: reset gpio 23
+I (2508) gpio: GPIO[23]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 
+I (2709) LVGL: Starting LVGL task
+I (2709) M5STACK_TAB5: Detected ST7123 touch controller, using ST7123 display
+W (2709) ledc: GPIO 22 is not usable, maybe conflict with others
+I (2709) M5STACK_TAB5: MIPI DSI PHY Powered on
+I (2711) M5STACK_TAB5: Install MIPI DSI LCD control panel for ST7123
+I (2711) M5STACK_TAB5: Install LCD driver of ST7123
+I (2741) st7123: LCD ID: 80 A0 FB
+I (2941) M5STACK_TAB5: ST7123 Display initialized with resolution 720x1280
+I (2958) M5STACK_TAB5: Detected ST7123 touch controller, using ST7123 display
+I (2958) gpio: GPIO[23]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:2 
+I (2961) ST7123: Firmware version: 3(1.71.1.3), Max.X: 720, Max.Y: 1280, Max.Touchs: 10
+I (2961) ST7123: Touch panel create success, version: 1.0.0
+I (2961) M5STACK_TAB5: ST7123 touch panel initialized successfully
+I (2962) M5STACK_TAB5: Setting LCD backlight: 100%
+[2108-01-04 21:20:14.453] [[32minfo] [hal] usb host init
+I (2962) M5STACK_TAB5: Installing USB Host
+[2108-01-04 21:20:14.484] [[32minfo] [hal] hid init
+[2108-01-04 21:20:14.485] [[32minfo] [usba] hid init
+[2108-01-04 21:20:14.485] [[32minfo] [hal] rs485 init
+[2108-01-04 21:20:14.485] [[32minfo] [hal_rs485] rs485 init
+I (2994) hal_rs485: UART set pins, mode and install driver.
+[2108-01-04 21:20:14.486] [[32minfo] [hal] set gpio output capability
+GPIO 0 drive capability set to GPIO_DRIVE_CAP_0
+GPIO 1 drive capability set to GPIO_DRIVE_CAP_0
+GPIO 8 drive capability set to GPIO_DRIVE_CAP_0
+GPIO 9 drive capability set to GPIO_DRIVE_CAP_0
+GPIO 10 drive capability set to GPIO_DRIVE_CAP_0
+GPIO 11 drive capability set to GPIO_DRIVE_CAP_0
+GPIO 12 drive capability set to GPIO_DRIVE_CAP_0
+GPIO 13 drive capability set to GPIO_DRIVE_CAP_0
+GPIO 15 drive capability set to GPIO_DRIVE_CAP_0
+GPIO 22 drive capability set to GPIO_DRIVE_CAP_0
+GPIO 23 drive capability set to GPIO_DRIVE_CAP_0
+GPIO 26 drive capability set to GPIO_DRIVE_CAP_0
+GPIO 27 drive capability set to GPIO_DRIVE_CAP_0
+GPIO 28 drive capability set to GPIO_DRIVE_CAP_0
+GPIO 29 drive capability set to GPIO_DRIVE_CAP_0
+GPIO 30 drive capability set to GPIO_DRIVE_CAP_0
+GPIO 31 drive capability set to GPIO_DRIVE_CAP_0
+GPIO 32 drive capability set to GPIO_DRIVE_CAP_0
+GPIO 39 drive capability set to GPIO_DRIVE_CAP_0
+GPIO 40 drive capability set to GPIO_DRIVE_CAP_0
+GPIO 41 drive capability set to GPIO_DRIVE_CAP_0
+GPIO 42 drive capability set to GPIO_DRIVE_CAP_0
+GPIO 43 drive capability set to GPIO_DRIVE_CAP_0
+GPIO 44 drive capability set to GPIO_DRIVE_CAP_0
+[2108-01-04 21:20:14.490] [[32minfo] [hal] hal injected
+
+ _____ _____ _____ _____ _____ _____ _____ _____
+|     |     |     |   | |     |  _  |  |  |   __|
+| | | |  |  |  |  | | | |   --|     |    -|   __|
+|_|_|_|_____|_____|_|___|_____|__|__|__|__|_____|
+
+- @author Forairaaaaa
+- @version 2.0.0
+- @build at 18:31:24 Feb 12 2026
+
+[2108-01-04 21:20:14.492] [[32minfo] [AppStartupAnim] on create
+[2108-01-04 21:20:14.492] [[32minfo] [AppStartupAnim] on open
+I (3993) usba: Waiting for HID Device to be connected
+[2108-01-04 21:20:16.304] [[32minfo] [audio] set speaker volume: 80%
+I (4816) I2S_IF: Pending out channel for in channel running
+I (4816) I2S_IF: Mode 0 need extend bits 64 to 32
+I (4816) I2S_IF: channel mode 0 bits:16/32 channel:2 mask:3
+I (4816) I2S_IF: STD Mode 1 bits:16/32 channel:2 sample_rate:48000 mask:3
+I (4822) ES8388: Start on mode:2
+I (4823) Adev_Codec: Open codec device OK
+[2108-01-04 21:20:16.316] [[32minfo] [audio] audio event: 2
+[2108-01-04 21:20:16.316] [[32minfo] [audio] audio state: 1
+I (4829) I2S_IF: Pending out channel for in channel running
+E (4829) I2S_IF: Mode 1 conflict sample_rate 44100 with 48000
+I (4835) ES8388: Start on mode:2
+I (4836) Adev_Codec: Open codec device OK
+[2108-01-04 21:20:16.931] [[32minfo] [wifi] wifi init
+I (5444) transport: Attempt connection with slave: retry[0]
+I (5445) transport: Reset slave using GPIO[15]
+I (5445) os_wrapper_esp: GPIO [15] configured
+I (5445) gpio: GPIO[15]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 
+[2108-01-04 21:20:17.212] [[32minfo] [audio] audio event: 0
+[2108-01-04 21:20:17.212] [[32minfo] [audio] audio state: 0
+[2108-01-04 21:20:17.215] [[32minfo] [audio] audio event: 4
+[2108-01-04 21:20:17.215] [[32minfo] [audio] audio state: 3
+I (6568) sdio_wrapper: SDIO master: Data-Lines: 4-bit Freq(KHz)[40000 KHz]
+--- 0x48133e6a: wifi_sta_receive at D:/esp/v5.4.2/esp-idf/components/esp_wifi/src/wifi_netif.c:39
+I (6568) sdio_wrapper: GPIOs: CLK[12] CMD[13] D0[11] D1[10] D2[9] D3[8] Slave_Reset[15]
+I (6568) sdio_wrapper: Queues: Tx[20] Rx[20] SDIO-Rx-Mode[1]
+I (6568) H_SDIO_DRV: Starting SDIO process rx task
+I (6600) gpio: GPIO[10]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 
+I (6602) gpio: GPIO[8]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 
+Name: 
+Type: SDIO
+Speed: 40.00 MHz (limit: 40.00 MHz)
+Size: 0MB
+CSD: ver=1, sector_size=0, capacity=0 read_bl_len=0
+SCR: sd_spec=0, bus_width=0
+TUPLE: DEVICE, size: 3: D9 01 FF 
+TUPLE: MANFID, size: 4
+  MANF: 0092, CARD: 6666
+TUPLE: FUNCID, size: 2: 0C 00 
+TUPLE: FUNCE, size: 4: 00 00 02 32 
+TUPLE: CONFIG, size: 5: 01 01 00 02 07 
+TUPLE: CFTABLE_ENTRY, size: 8
+  INDX: C1, Intface: 1, Default: 1, Conf-Entry-Num: 1
+  IF: 41
+  FS: 30, misc: 0, mem_space: 1, irq: 1, io_space: 0, timing: 0, power: 0
+  IR: 30, mask: 1,   IRQ: FF FF
+  LEN: FFFF
+TUPLE: END
+I (6605) sdio_wrapper: Function 0 Blocksize: 512
+I (6605) sdio_wrapper: Function 1 Blocksize: 512
+I (6605) H_SDIO_DRV: SDIO Host operating in STREAMING MODE
+I (6605) H_SDIO_DRV: generate slave intr
+I (6611) transport: Received INIT event from ESP32 peripheral
+I (6611) transport: EVENT: 12
+I (6611) transport: EVENT: 11
+I (6611) transport: capabilities: 0xd
+I (6611) transport: Features supported are:
+I (6611) transport: 	 * WLAN
+I (6612) transport: 	   - HCI over SDIO
+I (6612) transport: 	   - BLE only
+I (6612) transport: EVENT: 13
+I (6612) transport: ESP board type is : 13 
+
+
+I (6612) transport: Base transport is set-up
+
+
+I (6612) transport: Slave chip Id[12]
+I (6612) hci_stub_drv: Host BT Support: Disabled
+I (6612) H_SDIO_DRV: Received INIT event
+[2108-01-04 21:20:19.145] [[32minfo] [wifi] sta connect ssid_len=9 pass_len=10
+I (7809) H_API: esp_wifi_remote_connect
+[2108-01-04 21:20:19.322] [[32minfo] [AppStartupAnim] on close
+[2108-01-04 21:20:19.323] [[32minfo] [audio] set speaker volume: 60%
+[2108-01-04 21:20:19.323] [[32minfo] [AppLauncher] on create
+[2108-01-04 21:20:19.324] [[32minfo] [AppLauncher] on open
+[2108-01-04 21:20:19.324] [[32minfo] [launcher-view] init
+I (7849) temperature_sensor: Range [20°C ~ 100°C], error < 2°C
+I (7853) H_API: esp_wifi_remote_connect
+W (7882) rpc_rsp: Hosted RPC_Resp [0x21a], uid [9], resp code [12295]
+I (7896) esp_netif_lwip: DHCP server started on interface WIFI_AP_DEF with IP: 192.168.4.1
+I (8883) H_API: esp_wifi_remote_connect
+W (8900) rpc_rsp: Hosted RPC_Resp [0x21a], uid [11], resp code [12295]
+I (9900) H_API: esp_wifi_remote_connect
+W (9916) rpc_rsp: Hosted RPC_Resp [0x21a], uid [12], resp code [12295]
+I (10118) I2S_IF: Pending out channel for in channel running
+I (10118) I2S_IF: Mode 0 need extend bits 64 to 32
+I (10118) I2S_IF: channel mode 0 bits:16/32 channel:2 mask:3
+I (10119) I2S_IF: STD Mode 1 bits:16/32 channel:2 sample_rate:48000 mask:3
+[2108-01-04 21:20:21.614] [[32minfo] [hal] mount sd card
+W (10123) ldo: The voltage value 0 is out of the recommended range [500, 2700]
+I (10123) sdmmc_periph: sdmmc_host_init: SDMMC host already initialized, skipping init flow
+I (10123) gpio: GPIO[42]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 
+I (10124) ES8388: Start on mode:2
+I (10126) Adev_Codec: Open codec device OK
+Name: SC16G
+Type: SDHC
+Speed: 40.00 MHz (limit: 40.00 MHz)
+Size: 15193MB
+CSD: ver=2, sector_size=512, capacity=31116288 read_bl_len=9
+SSR: bus_width=4
+[2108-01-04 21:20:21.816] [[32minfo] [font] loaded font size=36 path=S:/sd/font.ttf
+E (10348) system_api: 0 mac type is incorrect (not found)
+[2108-01-04 21:20:21.840] [[32minfo] [toast] create toast manager success
+I (10917) H_API: esp_wifi_remote_connect
+W (11088) rpc_rsp: Hosted RPC_Resp [0x21a], uid [13], resp code [12295]
+I (11247) esp_wifi_remote: esp_wifi_internal_reg_rxcb: sta: 0x48133e6a
+I (12088) H_API: esp_wifi_remote_connect
+I (12258) esp_netif_handlers: sta ip: 192.168.50.101, mask: 255.255.255.0, gw: 192.168.50.1
+[2108-01-04 21:20:23.750] [[32minfo] [wifi] sta got ip 192.168.50.101
+[2108-01-04 21:20:23.756] [[32minfo] [wifi] ap disabled (sta only)
+[2108-01-04 21:20:33.775] [[32minfo] [bailian-asr] heap@asr.start: free_int=130359 lfb_int=65536 min_int=129451 free_psram=20017920 lfb_psram=19922944 min_psram=20017404 free_dma=100535
+[2108-01-04 21:20:33.776] [[32minfo] [bailian-asr] heap_integrity@asr.start: OK
+[2108-01-04 21:20:33.777] [[32minfo] [bailian-asr] heap@ws.before_init: free_int=113715 lfb_int=49152 min_int=113615 free_psram=19979004 lfb_psram=19922944 min_psram=19978488 free_dma=83891
+[2108-01-04 21:20:33.778] [[32minfo] [bailian-asr] heap_integrity@ws.before_init: OK
+I (22287) websocket_client: Started
+[2108-01-04 21:20:33.779] [[32minfo] [bailian-asr] heap@ws.started: free_int=90067 lfb_int=31744 min_int=89419 free_psram=19979004 lfb_psram=19922944 min_psram=19978488 free_dma=60243
+[2108-01-04 21:20:33.780] [[32minfo] [bailian-asr] state=Connecting stack_hwm=13448B
+I (22413) esp-x509-crt-bundle: Certificate validated
+[2108-01-04 21:20:34.349] [[32minfo] [bailian-asr] ws connected
+[2108-01-04 21:20:34.612] [[32minfo] [bailian-asr] task-started
+[2108-01-04 21:20:34.696] [[32minfo] [bailian-asr] rec stack_hwm=8840B q_waiting=1
+[2108-01-04 21:20:35.266] [[32minfo] [bailian-asr] result-generated: end=0 text.len=3
+[2108-01-04 21:20:35.586] [[32minfo] [bailian-asr] result-generated: end=0 text.len=9
+[2108-01-04 21:20:35.790] [[32minfo] [bailian-asr] state=Recording stack_hwm=11884B
+[2108-01-04 21:20:36.796] [[32minfo] [bailian-asr] rec stack_hwm=7412B q_waiting=1
+[2108-01-04 21:20:36.895] [[32minfo] [bailian-asr] result-generated: end=1 text.len=12
+[Warn]	(23.225, +23225)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(23.225, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(23.225, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(23.225, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(23.260, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(23.260, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(23.260, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(23.260, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(23.295, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(23.295, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(23.295, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(23.295, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(23.330, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(23.330, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(23.330, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(23.330, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(23.365, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(23.365, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(23.365, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(23.365, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(23.400, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(23.400, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(23.400, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(23.400, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(23.435, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(23.435, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(23.435, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(23.435, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(23.470, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(23.470, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(23.470, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(23.470, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(23.505, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(23.505, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(23.505, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(23.505, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(23.540, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(23.540, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(23.540, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(23.540, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(23.575, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(23.575, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(23.575, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(23.575, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(23.610, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(23.610, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(23.610, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(23.610, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(23.645, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(23.645, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(23.645, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(23.645, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(23.680, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(23.680, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(23.680, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(23.680, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(23.715, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(23.715, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(23.715, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(23.715, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(23.750, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(23.750, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(23.750, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(23.750, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(24.030, +280)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(24.030, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(24.030, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(24.030, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(24.065, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(24.065, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(24.065, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(24.065, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(24.330, +265)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(24.330, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(24.330, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(24.330, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(24.630, +300)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(24.630, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(24.630, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(24.630, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(24.940, +310)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(24.940, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(24.940, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(24.940, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(25.230, +290)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(25.230, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(25.230, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(25.230, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(25.545, +315)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(25.545, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(25.545, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(25.545, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(25.865, +320)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(25.865, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(25.865, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(25.865, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(26.150, +285)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(26.150, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(26.150, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(26.150, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(26.430, +280)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(26.430, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(26.430, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(26.430, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(26.760, +330)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(26.760, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(26.760, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(26.760, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(27.035, +275)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(27.035, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(27.035, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(27.035, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(27.365, +330)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(27.365, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(27.365, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(27.365, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(27.640, +275)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(27.640, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(27.640, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(27.640, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(27.935, +295)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(27.935, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(27.935, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(27.935, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(28.245, +310)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(28.245, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(28.245, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(28.245, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(28.545, +300)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(28.545, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(28.545, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(28.545, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(28.580, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(28.580, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(28.580, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(28.580, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(28.615, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(28.615, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(28.615, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(28.615, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(28.650, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(28.650, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(28.650, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(28.650, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(28.685, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(28.685, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(28.685, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(28.685, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[2108-01-04 21:20:47.353] [[32minfo] [bailian-asr] heap@asr.start: free_int=119723 lfb_int=36864 min_int=64431 free_psram=19979004 lfb_psram=19922944 min_psram=19942808 free_dma=89899
+[2108-01-04 21:20:47.355] [[32minfo] [bailian-asr] heap_integrity@asr.start: OK
+[2108-01-04 21:20:47.355] [[32minfo] [bailian-asr] heap@ws.before_init: free_int=103227 lfb_int=36864 min_int=64431 free_psram=19979004 lfb_psram=19922944 min_psram=19942808 free_dma=73403
+[2108-01-04 21:20:47.356] [[32minfo] [bailian-asr] heap_integrity@ws.before_init: OK
+I (35865) websocket_client: Started
+[2108-01-04 21:20:47.357] [[32minfo] [bailian-asr] heap@ws.started: free_int=80091 lfb_int=31744 min_int=64431 free_psram=19979004 lfb_psram=19922944 min_psram=19942808 free_dma=50267
+[2108-01-04 21:20:47.358] [[32minfo] [bailian-asr] state=Connecting stack_hwm=13436B
+I (35968) esp-x509-crt-bundle: Certificate validated
+[2108-01-04 21:20:47.689] [[32minfo] [bailian-asr] ws connected
+[2108-01-04 21:20:48.142] [[32minfo] [bailian-asr] task-started
+[2108-01-04 21:20:48.246] [[32minfo] [bailian-asr] rec stack_hwm=8840B q_waiting=1
+[2108-01-04 21:20:48.704] [[32minfo] [bailian-asr] result-generated: end=0 text.len=3
+[2108-01-04 21:20:49.141] [[32minfo] [bailian-asr] result-generated: end=0 text.len=9
+[2108-01-04 21:20:49.394] [[32minfo] [bailian-asr] state=Recording stack_hwm=11888B
+[2108-01-04 21:20:49.942] [[32minfo] [bailian-asr] result-generated: end=0 text.len=24
+[2108-01-04 21:20:50.346] [[32minfo] [bailian-asr] rec stack_hwm=7412B q_waiting=1
+[2108-01-04 21:20:51.397] [[32minfo] [bailian-asr] state=Recording stack_hwm=11872B
+[2108-01-04 21:20:51.634] [[32minfo] [bailian-asr] result-generated: end=0 text.len=36
+[2108-01-04 21:20:51.800] [[32minfo] [bailian-asr] result-generated: end=1 text.len=36
+[Warn]	(38.255, +9570)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(38.255, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+64CD lv_draw_label.c:393
+[Warn]	(38.255, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF0C lv_draw_label.c:393
+[Warn]	(38.255, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(38.255, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+80FD lv_draw_label.c:393
+[Warn]	(38.255, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(38.255, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(38.255, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(38.255, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BF4 lv_draw_label.c:393
+[Warn]	(38.255, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BDD lv_draw_label.c:393
+[Warn]	(38.255, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4E86 lv_draw_label.c:393
+[Warn]	(38.255, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(38.290, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(38.290, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+64CD lv_draw_label.c:393
+[Warn]	(38.290, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF0C lv_draw_label.c:393
+[Warn]	(38.290, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(38.290, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+80FD lv_draw_label.c:393
+[Warn]	(38.290, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(38.290, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(38.290, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(38.290, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BF4 lv_draw_label.c:393
+[Warn]	(38.290, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BDD lv_draw_label.c:393
+[Warn]	(38.290, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4E86 lv_draw_label.c:393
+[Warn]	(38.290, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(38.325, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(38.325, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+64CD lv_draw_label.c:393
+[Warn]	(38.325, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF0C lv_draw_label.c:393
+[Warn]	(38.325, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(38.325, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+80FD lv_draw_label.c:393
+[Warn]	(38.325, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(38.325, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(38.325, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(38.325, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BF4 lv_draw_label.c:393
+[Warn]	(38.325, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BDD lv_draw_label.c:393
+[Warn]	(38.325, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4E86 lv_draw_label.c:393
+[Warn]	(38.325, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(38.360, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(38.360, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+64CD lv_draw_label.c:393
+[Warn]	(38.360, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF0C lv_draw_label.c:393
+[Warn]	(38.360, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(38.360, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+80FD lv_draw_label.c:393
+[Warn]	(38.360, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(38.360, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(38.360, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(38.360, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BF4 lv_draw_label.c:393
+[Warn]	(38.360, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BDD lv_draw_label.c:393
+[Warn]	(38.360, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4E86 lv_draw_label.c:393
+[Warn]	(38.360, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(38.395, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(38.395, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+64CD lv_draw_label.c:393
+[Warn]	(38.395, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF0C lv_draw_label.c:393
+[Warn]	(38.395, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(38.395, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+80FD lv_draw_label.c:393
+[Warn]	(38.395, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(38.395, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(38.395, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(38.395, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BF4 lv_draw_label.c:393
+[Warn]	(38.395, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BDD lv_draw_label.c:393
+[Warn]	(38.395, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4E86 lv_draw_label.c:393
+[Warn]	(38.395, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(38.430, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(38.430, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+64CD lv_draw_label.c:393
+[Warn]	(38.430, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF0C lv_draw_label.c:393
+[Warn]	(38.430, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(38.430, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+80FD lv_draw_label.c:393
+[Warn]	(38.430, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(38.430, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(38.430, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(38.430, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BF4 lv_draw_label.c:393
+[Warn]	(38.430, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BDD lv_draw_label.c:393
+[Warn]	(38.430, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4E86 lv_draw_label.c:393
+[Warn]	(38.430, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(38.465, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(38.465, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+64CD lv_draw_label.c:393
+[Warn]	(38.465, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF0C lv_draw_label.c:393
+[Warn]	(38.465, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(38.465, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+80FD lv_draw_label.c:393
+[Warn]	(38.465, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(38.465, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(38.465, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(38.465, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BF4 lv_draw_label.c:393
+[Warn]	(38.465, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BDD lv_draw_label.c:393
+[Warn]	(38.465, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4E86 lv_draw_label.c:393
+[Warn]	(38.465, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(38.500, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(38.500, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+64CD lv_draw_label.c:393
+[Warn]	(38.500, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF0C lv_draw_label.c:393
+[Warn]	(38.500, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(38.500, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+80FD lv_draw_label.c:393
+[Warn]	(38.500, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(38.500, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(38.500, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(38.500, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BF4 lv_draw_label.c:393
+[Warn]	(38.500, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BDD lv_draw_label.c:393
+[Warn]	(38.500, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4E86 lv_draw_label.c:393
+[Warn]	(38.500, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(38.535, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(38.535, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+64CD lv_draw_label.c:393
+[Warn]	(38.535, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF0C lv_draw_label.c:393
+[Warn]	(38.535, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(38.535, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+80FD lv_draw_label.c:393
+[Warn]	(38.535, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(38.535, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(38.535, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(38.535, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BF4 lv_draw_label.c:393
+[Warn]	(38.535, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BDD lv_draw_label.c:393
+[Warn]	(38.535, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4E86 lv_draw_label.c:393
+[Warn]	(38.535, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(38.570, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(38.570, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+64CD lv_draw_label.c:393
+[Warn]	(38.570, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF0C lv_draw_label.c:393
+[Warn]	(38.570, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(38.570, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+80FD lv_draw_label.c:393
+[Warn]	(38.570, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(38.570, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(38.570, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(38.570, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BF4 lv_draw_label.c:393
+[Warn]	(38.570, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BDD lv_draw_label.c:393
+[Warn]	(38.570, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4E86 lv_draw_label.c:393
+[Warn]	(38.570, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(38.605, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(38.605, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+64CD lv_draw_label.c:393
+[Warn]	(38.605, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF0C lv_draw_label.c:393
+[Warn]	(38.605, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(38.605, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+80FD lv_draw_label.c:393
+[Warn]	(38.605, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(38.605, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(38.605, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(38.605, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BF4 lv_draw_label.c:393
+[Warn]	(38.605, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BDD lv_draw_label.c:393
+[Warn]	(38.605, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4E86 lv_draw_label.c:393
+[Warn]	(38.605, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(38.640, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(38.640, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+64CD lv_draw_label.c:393
+[Warn]	(38.640, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF0C lv_draw_label.c:393
+[Warn]	(38.640, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(38.640, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+80FD lv_draw_label.c:393
+[Warn]	(38.640, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(38.640, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(38.640, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(38.640, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BF4 lv_draw_label.c:393
+[Warn]	(38.640, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BDD lv_draw_label.c:393
+[Warn]	(38.640, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4E86 lv_draw_label.c:393
+[Warn]	(38.640, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(38.675, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(38.675, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+64CD lv_draw_label.c:393
+[Warn]	(38.675, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF0C lv_draw_label.c:393
+[Warn]	(38.675, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(38.675, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+80FD lv_draw_label.c:393
+[Warn]	(38.675, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(38.675, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(38.675, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(38.675, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BF4 lv_draw_label.c:393
+[Warn]	(38.675, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BDD lv_draw_label.c:393
+[Warn]	(38.675, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4E86 lv_draw_label.c:393
+[Warn]	(38.675, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(38.710, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(38.710, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+64CD lv_draw_label.c:393
+[Warn]	(38.710, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF0C lv_draw_label.c:393
+[Warn]	(38.710, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(38.710, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+80FD lv_draw_label.c:393
+[Warn]	(38.710, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(38.710, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(38.710, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(38.710, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BF4 lv_draw_label.c:393
+[Warn]	(38.710, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BDD lv_draw_label.c:393
+[Warn]	(38.710, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4E86 lv_draw_label.c:393
+[Warn]	(38.710, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(38.745, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(38.745, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+64CD lv_draw_label.c:393
+[Warn]	(38.745, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF0C lv_draw_label.c:393
+[Warn]	(38.745, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(38.745, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+80FD lv_draw_label.c:393
+[Warn]	(38.745, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(38.745, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(38.745, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(38.745, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BF4 lv_draw_label.c:393
+[Warn]	(38.745, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BDD lv_draw_label.c:393
+[Warn]	(38.745, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4E86 lv_draw_label.c:393
+[Warn]	(38.745, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(38.780, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(38.780, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+64CD lv_draw_label.c:393
+[Warn]	(38.780, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF0C lv_draw_label.c:393
+[Warn]	(38.780, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(38.780, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+80FD lv_draw_label.c:393
+[Warn]	(38.780, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(38.780, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(38.780, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(38.780, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BF4 lv_draw_label.c:393
+[Warn]	(38.780, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BDD lv_draw_label.c:393
+[Warn]	(38.780, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4E86 lv_draw_label.c:393
+[Warn]	(38.780, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(39.065, +285)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(39.065, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+64CD lv_draw_label.c:393
+[Warn]	(39.065, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF0C lv_draw_label.c:393
+[Warn]	(39.065, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(39.065, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+80FD lv_draw_label.c:393
+[Warn]	(39.065, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(39.065, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(39.065, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(39.065, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BF4 lv_draw_label.c:393
+[Warn]	(39.065, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BDD lv_draw_label.c:393
+[Warn]	(39.065, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4E86 lv_draw_label.c:393
+[Warn]	(39.065, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(39.100, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(39.100, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+64CD lv_draw_label.c:393
+[Warn]	(39.100, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF0C lv_draw_label.c:393
+[Warn]	(39.100, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(39.100, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+80FD lv_draw_label.c:393
+[Warn]	(39.100, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(39.100, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(39.100, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(39.100, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BF4 lv_draw_label.c:393
+[Warn]	(39.100, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BDD lv_draw_label.c:393
+[Warn]	(39.100, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4E86 lv_draw_label.c:393
+[Warn]	(39.100, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(39.365, +265)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(39.365, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+64CD lv_draw_label.c:393
+[Warn]	(39.365, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF0C lv_draw_label.c:393
+[Warn]	(39.365, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(39.365, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+80FD lv_draw_label.c:393
+[Warn]	(39.365, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(39.365, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(39.365, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(39.365, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BF4 lv_draw_label.c:393
+[Warn]	(39.365, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BDD lv_draw_label.c:393
+[Warn]	(39.365, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4E86 lv_draw_label.c:393
+[Warn]	(39.365, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(39.665, +300)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(39.665, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+64CD lv_draw_label.c:393
+[Warn]	(39.665, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF0C lv_draw_label.c:393
+[Warn]	(39.665, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(39.665, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+80FD lv_draw_label.c:393
+[Warn]	(39.665, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(39.665, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(39.665, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(39.665, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BF4 lv_draw_label.c:393
+[Warn]	(39.665, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BDD lv_draw_label.c:393
+[Warn]	(39.665, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4E86 lv_draw_label.c:393
+[Warn]	(39.665, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(39.965, +300)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(39.965, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+64CD lv_draw_label.c:393
+[Warn]	(39.965, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF0C lv_draw_label.c:393
+[Warn]	(39.965, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(39.965, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+80FD lv_draw_label.c:393
+[Warn]	(39.965, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(39.965, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(39.965, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(39.965, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BF4 lv_draw_label.c:393
+[Warn]	(39.965, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BDD lv_draw_label.c:393
+[Warn]	(39.965, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4E86 lv_draw_label.c:393
+[Warn]	(39.965, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(40.270, +305)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(40.270, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+64CD lv_draw_label.c:393
+[Warn]	(40.270, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF0C lv_draw_label.c:393
+[Warn]	(40.270, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(40.270, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+80FD lv_draw_label.c:393
+[Warn]	(40.270, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(40.270, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(40.270, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(40.270, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BF4 lv_draw_label.c:393
+[Warn]	(40.270, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BDD lv_draw_label.c:393
+[Warn]	(40.270, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4E86 lv_draw_label.c:393
+[Warn]	(40.270, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(40.565, +295)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(40.565, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+64CD lv_draw_label.c:393
+[Warn]	(40.565, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF0C lv_draw_label.c:393
+[Warn]	(40.565, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(40.565, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+80FD lv_draw_label.c:393
+[Warn]	(40.565, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(40.565, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(40.565, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(40.565, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BF4 lv_draw_label.c:393
+[Warn]	(40.565, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BDD lv_draw_label.c:393
+[Warn]	(40.565, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4E86 lv_draw_label.c:393
+[Warn]	(40.565, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(40.875, +310)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(40.875, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+64CD lv_draw_label.c:393
+[Warn]	(40.875, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF0C lv_draw_label.c:393
+[Warn]	(40.875, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(40.875, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+80FD lv_draw_label.c:393
+[Warn]	(40.875, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(40.875, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(40.875, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(40.875, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BF4 lv_draw_label.c:393
+[Warn]	(40.875, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BDD lv_draw_label.c:393
+[Warn]	(40.875, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4E86 lv_draw_label.c:393
+[Warn]	(40.875, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(41.180, +305)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(41.180, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+64CD lv_draw_label.c:393
+[Warn]	(41.180, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF0C lv_draw_label.c:393
+[Warn]	(41.180, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(41.180, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+80FD lv_draw_label.c:393
+[Warn]	(41.180, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(41.180, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(41.180, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(41.180, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BF4 lv_draw_label.c:393
+[Warn]	(41.180, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BDD lv_draw_label.c:393
+[Warn]	(41.180, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4E86 lv_draw_label.c:393
+[Warn]	(41.180, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(41.480, +300)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(41.480, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+64CD lv_draw_label.c:393
+[Warn]	(41.480, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF0C lv_draw_label.c:393
+[Warn]	(41.480, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(41.480, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+80FD lv_draw_label.c:393
+[Warn]	(41.480, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(41.480, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(41.480, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(41.480, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BF4 lv_draw_label.c:393
+[Warn]	(41.480, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BDD lv_draw_label.c:393
+[Warn]	(41.480, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4E86 lv_draw_label.c:393
+[Warn]	(41.480, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(41.785, +305)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(41.785, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+64CD lv_draw_label.c:393
+[Warn]	(41.785, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF0C lv_draw_label.c:393
+[Warn]	(41.785, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(41.785, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+80FD lv_draw_label.c:393
+[Warn]	(41.785, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(41.785, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(41.785, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(41.785, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BF4 lv_draw_label.c:393
+[Warn]	(41.785, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BDD lv_draw_label.c:393
+[Warn]	(41.785, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4E86 lv_draw_label.c:393
+[Warn]	(41.785, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(42.090, +305)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(42.090, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+64CD lv_draw_label.c:393
+[Warn]	(42.090, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF0C lv_draw_label.c:393
+[Warn]	(42.090, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(42.090, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+80FD lv_draw_label.c:393
+[Warn]	(42.090, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(42.090, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(42.090, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(42.090, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BF4 lv_draw_label.c:393
+[Warn]	(42.090, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BDD lv_draw_label.c:393
+[Warn]	(42.090, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4E86 lv_draw_label.c:393
+[Warn]	(42.090, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(42.390, +300)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(42.390, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+64CD lv_draw_label.c:393
+[Warn]	(42.390, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF0C lv_draw_label.c:393
+[Warn]	(42.390, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(42.390, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+80FD lv_draw_label.c:393
+[Warn]	(42.390, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(42.390, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(42.390, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(42.390, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BF4 lv_draw_label.c:393
+[Warn]	(42.390, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BDD lv_draw_label.c:393
+[Warn]	(42.390, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4E86 lv_draw_label.c:393
+[Warn]	(42.390, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(42.695, +305)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(42.695, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+64CD lv_draw_label.c:393
+[Warn]	(42.695, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF0C lv_draw_label.c:393
+[Warn]	(42.695, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(42.695, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+80FD lv_draw_label.c:393
+[Warn]	(42.695, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(42.695, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(42.695, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(42.695, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BF4 lv_draw_label.c:393
+[Warn]	(42.695, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BDD lv_draw_label.c:393
+[Warn]	(42.695, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4E86 lv_draw_label.c:393
+[Warn]	(42.695, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(42.995, +300)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(42.995, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+64CD lv_draw_label.c:393
+[Warn]	(42.995, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF0C lv_draw_label.c:393
+[Warn]	(42.995, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(42.995, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+80FD lv_draw_label.c:393
+[Warn]	(42.995, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(42.995, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(42.995, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(42.995, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BF4 lv_draw_label.c:393
+[Warn]	(42.995, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BDD lv_draw_label.c:393
+[Warn]	(42.995, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4E86 lv_draw_label.c:393
+[Warn]	(42.995, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(43.265, +270)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(43.265, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+64CD lv_draw_label.c:393
+[Warn]	(43.265, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF0C lv_draw_label.c:393
+[Warn]	(43.265, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(43.265, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+80FD lv_draw_label.c:393
+[Warn]	(43.265, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(43.265, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(43.265, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(43.265, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BF4 lv_draw_label.c:393
+[Warn]	(43.265, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BDD lv_draw_label.c:393
+[Warn]	(43.265, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4E86 lv_draw_label.c:393
+[Warn]	(43.265, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(43.570, +305)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(43.570, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+64CD lv_draw_label.c:393
+[Warn]	(43.570, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF0C lv_draw_label.c:393
+[Warn]	(43.570, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(43.570, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+80FD lv_draw_label.c:393
+[Warn]	(43.570, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(43.570, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(43.570, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(43.570, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BF4 lv_draw_label.c:393
+[Warn]	(43.570, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BDD lv_draw_label.c:393
+[Warn]	(43.570, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4E86 lv_draw_label.c:393
+[Warn]	(43.570, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(43.615, +45)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(43.615, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+64CD lv_draw_label.c:393
+[Warn]	(43.615, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF0C lv_draw_label.c:393
+[Warn]	(43.615, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(43.615, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+80FD lv_draw_label.c:393
+[Warn]	(43.615, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(43.615, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(43.615, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(43.615, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BF4 lv_draw_label.c:393
+[Warn]	(43.615, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BDD lv_draw_label.c:393
+[Warn]	(43.615, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4E86 lv_draw_label.c:393
+[Warn]	(43.615, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(43.650, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(43.650, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+64CD lv_draw_label.c:393
+[Warn]	(43.650, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF0C lv_draw_label.c:393
+[Warn]	(43.650, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(43.650, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+80FD lv_draw_label.c:393
+[Warn]	(43.650, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(43.650, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(43.650, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(43.650, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BF4 lv_draw_label.c:393
+[Warn]	(43.650, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BDD lv_draw_label.c:393
+[Warn]	(43.650, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4E86 lv_draw_label.c:393
+[Warn]	(43.650, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(43.685, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(43.685, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+64CD lv_draw_label.c:393
+[Warn]	(43.685, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF0C lv_draw_label.c:393
+[Warn]	(43.685, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(43.685, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+80FD lv_draw_label.c:393
+[Warn]	(43.685, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(43.685, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(43.685, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(43.685, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BF4 lv_draw_label.c:393
+[Warn]	(43.685, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BDD lv_draw_label.c:393
+[Warn]	(43.685, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4E86 lv_draw_label.c:393
+[Warn]	(43.685, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(43.720, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(43.720, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+64CD lv_draw_label.c:393
+[Warn]	(43.720, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF0C lv_draw_label.c:393
+[Warn]	(43.720, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(43.720, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+80FD lv_draw_label.c:393
+[Warn]	(43.720, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(43.720, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(43.720, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6211 lv_draw_label.c:393
+[Warn]	(43.720, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BF4 lv_draw_label.c:393
+[Warn]	(43.720, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+8BDD lv_draw_label.c:393
+[Warn]	(43.720, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4E86 lv_draw_label.c:393
+[Warn]	(43.720, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[2108-01-04 21:21:31.063] [[32minfo] [bailian-asr] heap@asr.start: free_int=107871 lfb_int=36864 min_int=57855 free_psram=19979004 lfb_psram=19922944 min_psram=19942808 free_dma=78047
+[2108-01-04 21:21:31.064] [[32minfo] [bailian-asr] heap_integrity@asr.start: OK
+[2108-01-04 21:21:31.064] [[32minfo] [bailian-asr] heap@ws.before_init: free_int=91367 lfb_int=31744 min_int=57855 free_psram=19979004 lfb_psram=19922944 min_psram=19942808 free_dma=61543
+[2108-01-04 21:21:31.065] [[32minfo] [bailian-asr] heap_integrity@ws.before_init: OK
+I (79575) websocket_client: Started
+[2108-01-04 21:21:31.067] [[32minfo] [bailian-asr] heap@ws.started: free_int=68275 lfb_int=31744 min_int=57855 free_psram=19979004 lfb_psram=19922944 min_psram=19942808 free_dma=38451
+[2108-01-04 21:21:31.068] [[32minfo] [bailian-asr] state=Connecting stack_hwm=13448B
+I (79681) esp-x509-crt-bundle: Certificate validated
+[2108-01-04 21:21:31.406] [[32minfo] [bailian-asr] ws connected
+[2108-01-04 21:21:31.850] [[32minfo] [bailian-asr] task-started
+[2108-01-04 21:21:31.956] [[32minfo] [bailian-asr] rec stack_hwm=8840B q_waiting=1
+[2108-01-04 21:21:33.082] [[32minfo] [bailian-asr] state=Recording stack_hwm=11884B
+[2108-01-04 21:21:33.632] [[32minfo] [bailian-asr] result-generated: end=0 text.len=9
+[2108-01-04 21:21:34.056] [[32minfo] [bailian-asr] rec stack_hwm=7412B q_waiting=1
+[2108-01-04 21:21:35.039] [[32minfo] [bailian-asr] result-generated: end=1 text.len=12
+[Warn]	(81.040, +37320)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(81.040, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(81.040, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(81.040, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(81.075, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(81.075, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(81.075, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(81.075, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(81.110, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(81.110, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(81.110, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(81.110, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(81.145, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(81.145, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(81.145, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(81.145, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(81.180, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(81.180, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(81.180, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(81.180, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(81.215, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(81.215, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(81.215, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(81.215, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(81.250, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(81.250, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(81.250, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(81.250, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(81.320, +70)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(81.320, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(81.320, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(81.320, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(81.355, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(81.355, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(81.355, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(81.355, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(81.390, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(81.390, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(81.390, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(81.390, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(81.425, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(81.425, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(81.425, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(81.425, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(81.460, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(81.460, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(81.460, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(81.460, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(81.495, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(81.495, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(81.495, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(81.495, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(81.530, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(81.530, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(81.530, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(81.530, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(81.750, +220)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(81.750, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(81.750, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(81.750, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(81.860, +110)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(81.860, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(81.860, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(81.860, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(82.050, +190)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(82.050, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(82.050, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(82.050, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(82.350, +300)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(82.350, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(82.350, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(82.350, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(82.655, +305)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(82.655, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(82.655, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(82.655, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(82.955, +300)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(82.955, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(82.955, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(82.955, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(83.255, +300)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(83.255, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(83.255, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(83.255, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(83.555, +300)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(83.555, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(83.555, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(83.555, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(83.865, +310)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(83.865, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(83.865, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(83.865, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(84.170, +305)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(84.170, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(84.170, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(84.170, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(84.475, +305)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(84.475, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(84.475, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(84.475, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(84.770, +295)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(84.770, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(84.770, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(84.770, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(85.080, +310)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(85.080, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(85.080, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(85.080, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[2108-01-04 21:21:39.326] [[32minfo] [bailian-asr] heap@asr.start: free_int=105603 lfb_int=34816 min_int=41467 free_psram=19979004 lfb_psram=19922944 min_psram=19942808 free_dma=75779
+[2108-01-04 21:21:39.327] [[32minfo] [bailian-asr] heap_integrity@asr.start: OK
+[2108-01-04 21:21:39.328] [[32minfo] [bailian-asr] heap@ws.before_init: free_int=89111 lfb_int=31744 min_int=41467 free_psram=19979004 lfb_psram=19922944 min_psram=19942808 free_dma=59287
+[2108-01-04 21:21:39.329] [[32minfo] [bailian-asr] heap_integrity@ws.before_init: OK
+I (87838) websocket_client: Started
+[2108-01-04 21:21:39.330] [[32minfo] [bailian-asr] heap@ws.started: free_int=69231 lfb_int=31744 min_int=41467 free_psram=19979004 lfb_psram=19922944 min_psram=19942808 free_dma=39407
+[2108-01-04 21:21:39.331] [[32minfo] [bailian-asr] state=Connecting stack_hwm=13448B
+[Warn]	(85.150, +70)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(85.150, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(85.150, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(85.150, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(85.150, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(85.150, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(85.150, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(85.150, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(85.185, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(85.185, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(85.185, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(85.185, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(85.220, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(85.220, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(85.220, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(85.220, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+I (87954) esp-x509-crt-bundle: Certificate validated
+[Warn]	(85.255, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(85.255, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(85.255, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(85.255, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(85.290, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(85.290, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(85.290, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(85.290, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(85.325, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(85.325, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(85.325, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(85.325, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(85.360, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(85.360, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(85.360, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(85.360, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(85.395, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(85.395, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(85.395, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(85.395, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(85.430, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(85.430, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(85.430, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(85.430, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(85.465, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(85.465, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(85.465, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(85.465, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[2108-01-04 21:21:39.694] [[32minfo] [bailian-asr] ws connected
+[Warn]	(85.500, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(85.500, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(85.500, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(85.500, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(85.535, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(85.535, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(85.535, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(85.535, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(85.570, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(85.570, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(85.570, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(85.570, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(85.605, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(85.605, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(85.605, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(85.605, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(85.640, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(85.640, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(85.640, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(85.640, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(85.675, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(85.675, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(85.675, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(85.675, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(85.710, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(85.710, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(85.710, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(85.710, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(85.745, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(85.745, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(85.745, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(85.745, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[2108-01-04 21:21:40.039] [[32minfo] [bailian-asr] task-started
+[2108-01-04 21:21:40.132] [[32minfo] [bailian-asr] rec stack_hwm=8840B q_waiting=1
+[Warn]	(85.995, +250)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(85.995, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(85.995, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(85.995, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(86.065, +70)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(86.065, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(86.065, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(86.065, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(86.295, +230)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(86.295, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(86.295, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(86.295, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(86.410, +115)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(86.410, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(86.410, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(86.410, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(86.445, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(86.445, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(86.445, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(86.445, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(86.480, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(86.480, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(86.480, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(86.480, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[Warn]	(86.515, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+4F60 lv_draw_label.c:393
+[Warn]	(86.515, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+597D lv_draw_label.c:393
+[Warn]	(86.515, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+554A lv_draw_label.c:393
+[Warn]	(86.515, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+3002 lv_draw_label.c:393
+[2108-01-04 21:21:40.761] [[32minfo] [bailian-asr] result-generated: end=0 text.len=3
+[2108-01-04 21:21:41.013] [[32minfo] [bailian-asr] result-generated: end=0 text.len=6
+[2108-01-04 21:21:41.354] [[32minfo] [bailian-asr] state=Recording stack_hwm=11900B
+[2108-01-04 21:21:41.808] [[32minfo] [bailian-asr] result-generated: end=0 text.len=15
+[2108-01-04 21:21:42.231] [[32minfo] [bailian-asr] rec stack_hwm=7412B q_waiting=1
+[2108-01-04 21:21:43.224] [[32minfo] [bailian-asr] result-generated: end=1 text.len=18
+[Warn]	(89.560, +3045)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(89.560, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(89.560, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6E05 lv_draw_label.c:393
+[Warn]	(89.560, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6670 lv_draw_label.c:393
+[Warn]	(89.560, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(89.560, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(89.595, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(89.595, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(89.595, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6E05 lv_draw_label.c:393
+[Warn]	(89.595, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6670 lv_draw_label.c:393
+[Warn]	(89.595, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(89.595, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(89.630, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(89.630, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(89.630, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6E05 lv_draw_label.c:393
+[Warn]	(89.630, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6670 lv_draw_label.c:393
+[Warn]	(89.630, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(89.630, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(89.665, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(89.665, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(89.665, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6E05 lv_draw_label.c:393
+[Warn]	(89.665, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6670 lv_draw_label.c:393
+[Warn]	(89.665, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(89.665, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(89.700, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(89.700, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(89.700, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6E05 lv_draw_label.c:393
+[Warn]	(89.700, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6670 lv_draw_label.c:393
+[Warn]	(89.700, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(89.700, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(89.735, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(89.735, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(89.735, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6E05 lv_draw_label.c:393
+[Warn]	(89.735, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6670 lv_draw_label.c:393
+[Warn]	(89.735, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(89.735, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(89.770, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(89.770, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(89.770, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6E05 lv_draw_label.c:393
+[Warn]	(89.770, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6670 lv_draw_label.c:393
+[Warn]	(89.770, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(89.770, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(89.805, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(89.805, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(89.805, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6E05 lv_draw_label.c:393
+[Warn]	(89.805, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6670 lv_draw_label.c:393
+[Warn]	(89.805, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(89.805, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(89.840, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(89.840, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(89.840, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6E05 lv_draw_label.c:393
+[Warn]	(89.840, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6670 lv_draw_label.c:393
+[Warn]	(89.840, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(89.840, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(89.875, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(89.875, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(89.875, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6E05 lv_draw_label.c:393
+[Warn]	(89.875, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6670 lv_draw_label.c:393
+[Warn]	(89.875, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(89.875, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(89.910, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(89.910, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(89.910, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6E05 lv_draw_label.c:393
+[Warn]	(89.910, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6670 lv_draw_label.c:393
+[Warn]	(89.910, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(89.910, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(89.945, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(89.945, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(89.945, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6E05 lv_draw_label.c:393
+[Warn]	(89.945, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6670 lv_draw_label.c:393
+[Warn]	(89.945, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(89.945, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(89.980, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(89.980, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(89.980, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6E05 lv_draw_label.c:393
+[Warn]	(89.980, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6670 lv_draw_label.c:393
+[Warn]	(89.980, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(89.980, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(90.015, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(90.015, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(90.015, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6E05 lv_draw_label.c:393
+[Warn]	(90.015, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6670 lv_draw_label.c:393
+[Warn]	(90.015, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(90.015, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(90.050, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(90.050, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(90.050, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6E05 lv_draw_label.c:393
+[Warn]	(90.050, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6670 lv_draw_label.c:393
+[Warn]	(90.050, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(90.050, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(90.085, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(90.085, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(90.085, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6E05 lv_draw_label.c:393
+[Warn]	(90.085, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6670 lv_draw_label.c:393
+[Warn]	(90.085, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(90.085, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(90.365, +280)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(90.365, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(90.365, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6E05 lv_draw_label.c:393
+[Warn]	(90.365, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6670 lv_draw_label.c:393
+[Warn]	(90.365, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(90.365, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(90.400, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(90.400, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(90.400, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6E05 lv_draw_label.c:393
+[Warn]	(90.400, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6670 lv_draw_label.c:393
+[Warn]	(90.400, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(90.400, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(90.665, +265)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(90.665, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(90.665, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6E05 lv_draw_label.c:393
+[Warn]	(90.665, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6670 lv_draw_label.c:393
+[Warn]	(90.665, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(90.665, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(90.965, +300)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(90.965, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(90.965, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6E05 lv_draw_label.c:393
+[Warn]	(90.965, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6670 lv_draw_label.c:393
+[Warn]	(90.965, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(90.965, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(91.275, +310)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(91.275, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(91.275, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6E05 lv_draw_label.c:393
+[Warn]	(91.275, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6670 lv_draw_label.c:393
+[Warn]	(91.275, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(91.275, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(91.600, +325)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(91.600, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(91.600, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6E05 lv_draw_label.c:393
+[Warn]	(91.600, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6670 lv_draw_label.c:393
+[Warn]	(91.600, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(91.600, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(91.880, +280)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(91.880, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(91.880, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6E05 lv_draw_label.c:393
+[Warn]	(91.880, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6670 lv_draw_label.c:393
+[Warn]	(91.880, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(91.880, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(92.165, +285)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(92.165, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(92.165, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6E05 lv_draw_label.c:393
+[Warn]	(92.165, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6670 lv_draw_label.c:393
+[Warn]	(92.165, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(92.165, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(92.485, +320)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(92.485, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(92.485, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6E05 lv_draw_label.c:393
+[Warn]	(92.485, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6670 lv_draw_label.c:393
+[Warn]	(92.485, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(92.485, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(92.765, +280)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(92.765, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(92.765, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6E05 lv_draw_label.c:393
+[Warn]	(92.765, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6670 lv_draw_label.c:393
+[Warn]	(92.765, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(92.765, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(93.090, +325)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(93.090, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(93.090, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6E05 lv_draw_label.c:393
+[Warn]	(93.090, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6670 lv_draw_label.c:393
+[Warn]	(93.090, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(93.090, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(93.370, +280)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(93.370, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(93.370, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6E05 lv_draw_label.c:393
+[Warn]	(93.370, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6670 lv_draw_label.c:393
+[Warn]	(93.370, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(93.370, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(93.670, +300)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(93.670, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(93.670, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6E05 lv_draw_label.c:393
+[Warn]	(93.670, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6670 lv_draw_label.c:393
+[Warn]	(93.670, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(93.670, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(93.975, +305)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(93.975, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(93.975, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6E05 lv_draw_label.c:393
+[Warn]	(93.975, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6670 lv_draw_label.c:393
+[Warn]	(93.975, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(93.975, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(94.270, +295)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(94.270, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(94.270, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6E05 lv_draw_label.c:393
+[Warn]	(94.270, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6670 lv_draw_label.c:393
+[Warn]	(94.270, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(94.270, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(94.575, +305)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(94.575, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(94.575, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6E05 lv_draw_label.c:393
+[Warn]	(94.575, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6670 lv_draw_label.c:393
+[Warn]	(94.575, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(94.575, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(94.875, +300)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(94.875, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(94.875, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6E05 lv_draw_label.c:393
+[Warn]	(94.875, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6670 lv_draw_label.c:393
+[Warn]	(94.875, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(94.875, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(94.945, +70)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(94.945, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(94.945, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6E05 lv_draw_label.c:393
+[Warn]	(94.945, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6670 lv_draw_label.c:393
+[Warn]	(94.945, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(94.945, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(94.980, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(94.980, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(94.980, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6E05 lv_draw_label.c:393
+[Warn]	(94.980, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6670 lv_draw_label.c:393
+[Warn]	(94.980, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(94.980, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(95.015, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(95.015, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(95.015, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6E05 lv_draw_label.c:393
+[Warn]	(95.015, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+6670 lv_draw_label.c:393
+[Warn]	(95.015, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(95.015, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[2108-01-04 21:21:51.008] [[32minfo] [bailian-asr] heap@asr.start: free_int=100703 lfb_int=32768 min_int=41467 free_psram=19979004 lfb_psram=19922944 min_psram=19942808 free_dma=70879
+[2108-01-04 21:21:51.009] [[32minfo] [bailian-asr] heap_integrity@asr.start: OK
+[2108-01-04 21:21:51.009] [[32minfo] [bailian-asr] heap@ws.before_init: free_int=84203 lfb_int=31744 min_int=41467 free_psram=19979004 lfb_psram=19922944 min_psram=19942808 free_dma=54379
+[2108-01-04 21:21:51.011] [[32minfo] [bailian-asr] heap_integrity@ws.before_init: OK
+I (99520) websocket_client: Started
+[2108-01-04 21:21:51.012] [[32minfo] [bailian-asr] heap@ws.started: free_int=62623 lfb_int=31744 min_int=41467 free_psram=19979004 lfb_psram=19922944 min_psram=19942808 free_dma=32799
+[2108-01-04 21:21:51.013] [[32minfo] [bailian-asr] state=Connecting stack_hwm=13448B
+I (99627) esp-x509-crt-bundle: Certificate validated
+[2108-01-04 21:21:51.351] [[32minfo] [bailian-asr] ws connected
+[2108-01-04 21:21:51.716] [[32minfo] [bailian-asr] task-started
+[2108-01-04 21:21:51.811] [[32minfo] [bailian-asr] rec stack_hwm=8840B q_waiting=1
+[2108-01-04 21:21:52.438] [[32minfo] [bailian-asr] result-generated: end=0 text.len=3
+[2108-01-04 21:21:52.705] [[32minfo] [bailian-asr] result-generated: end=0 text.len=9
+[2108-01-04 21:21:53.051] [[32minfo] [bailian-asr] state=Recording stack_hwm=11884B
+[2108-01-04 21:21:53.911] [[32minfo] [bailian-asr] rec stack_hwm=7412B q_waiting=1
+[2108-01-04 21:21:54.516] [[32minfo] [bailian-asr] result-generated: end=1 text.len=15
+[Warn]	(100.625, +5610)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(100.625, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(100.625, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(100.625, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(100.625, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(100.660, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(100.660, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(100.660, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(100.660, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(100.660, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(100.695, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(100.695, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(100.695, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(100.695, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(100.695, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(100.730, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(100.730, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(100.730, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(100.730, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(100.730, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(100.765, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(100.765, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(100.765, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(100.765, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(100.765, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(100.800, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(100.800, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(100.800, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(100.800, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(100.800, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(100.835, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(100.835, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(100.835, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(100.835, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(100.835, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(100.905, +70)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(100.905, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(100.905, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(100.905, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(100.905, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(100.940, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(100.940, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(100.940, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(100.940, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(100.940, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(100.975, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(100.975, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(100.975, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(100.975, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(100.975, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(101.010, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(101.010, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(101.010, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(101.010, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(101.010, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(101.045, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(101.045, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(101.045, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(101.045, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(101.045, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(101.080, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(101.080, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(101.080, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(101.080, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(101.080, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(101.115, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(101.115, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(101.115, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(101.115, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(101.115, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(101.220, +105)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(101.220, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(101.220, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(101.220, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(101.220, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(101.445, +225)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(101.445, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(101.445, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(101.445, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(101.445, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(101.515, +70)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(101.515, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(101.515, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(101.515, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(101.515, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(101.795, +280)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(101.795, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(101.795, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(101.795, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(101.795, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(102.100, +305)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(102.100, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(102.100, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(102.100, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(102.100, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(102.400, +300)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(102.400, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(102.400, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(102.400, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(102.400, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(102.705, +305)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(102.705, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(102.705, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(102.705, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(102.705, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(103.010, +305)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(103.010, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(103.010, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(103.010, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(103.010, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(103.310, +300)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(103.310, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(103.310, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(103.310, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(103.310, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(103.620, +310)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(103.620, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(103.620, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(103.620, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(103.620, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(103.915, +295)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(103.915, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(103.915, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(103.915, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(103.915, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(104.220, +305)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(104.220, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(104.220, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(104.220, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(104.220, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(104.525, +305)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(104.525, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(104.525, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(104.525, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(104.525, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(104.825, +300)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(104.825, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(104.825, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(104.825, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(104.825, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(105.130, +305)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(105.130, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(105.130, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(105.130, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(105.130, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(105.430, +300)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(105.430, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(105.430, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(105.430, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(105.430, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(105.700, +270)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(105.700, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(105.700, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(105.700, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(105.700, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(105.975, +275)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(105.975, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(105.975, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(105.975, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(105.975, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(106.010, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(106.010, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(106.010, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(106.010, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(106.010, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(106.045, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(106.045, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(106.045, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(106.045, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(106.045, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393
+[Warn]	(106.080, +35)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+542C lv_draw_label.c:393
+[Warn]	(106.080, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5F97 lv_draw_label.c:393
+[Warn]	(106.080, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+89C1 lv_draw_label.c:393
+[Warn]	(106.080, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+5417 lv_draw_label.c:393
+[Warn]	(106.080, +0)	 draw_letter: lv_draw_letter: glyph dsc. not found for U+FF1F lv_draw_label.c:393

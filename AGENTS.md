@@ -109,6 +109,48 @@ app_main()
 为避免来回解释、也防止误刷，约定以下“暗语”：
 - **“绿闪了”**：你已确认设备处于下载模式（绿灯快速闪烁），并授权我执行 `idf.py -p COM6 -b 460800 flash`（仍不包含 `erase_flash`，除非你明确说要擦除）。
 
+## 已知坑（务必记住）
+以下是本项目在 **ESP32‑P4 + ESP-IDF v5.4.2 + PSRAM XIP** 组合下，已经踩过且会“看起来像低级错误”的坑：
+
+### 1) PSRAM XIP + FreeRTOS TLS 删除回调会触发 abort 重启
+- 症状日志：`FreeRTOS: Fatal error: TLSP deletion callback ... overwritten with non-excutable pointer 0x4800xxxx`，随后 `abort() was called ... vPortTLSPointersDelCb`。
+- 触发条件：启用 `CONFIG_SPIRAM_XIP_FROM_PSRAM=y` 时，函数指针可能位于 `0x4800xxxx`；而 `esp_ptr_executable()` 的判断逻辑会把它当成“不可执行”，FreeRTOS 直接 `abort()`。
+- 当前规避：保持 `# CONFIG_FREERTOS_TLSP_DELETION_CALLBACKS is not set`（见 `M5Tab5-UserDemo/platforms/tab5/sdkconfig`）。
+- 根因修复方向（未来可做）：修正 IDF 的 `esp_ptr_executable()` 对 PSRAM XIP 映射段的可执行性判定。
+
+### 2) TCM 被当作 8-bit heap 会导致启动期 FreeRTOS assert/黑屏
+- 症状日志：`assert failed: xTaskCreateStaticPinnedToCore ... (xPortcheckValidStackMem(puxStackBuffer))`，且 `puxStackBuffer=0x3010xxxx`（TCM 段）。
+- 现象：看起来像“黑屏”，实际上是 **启动早期反复 assert+重启**。
+- 说明：ESP32‑P4 上 TCM 被纳入 heap 后，若被当作 `MALLOC_CAP_8BIT` 分配给任务栈，会被 `esp_ptr_byte_accessible()` 判定失败而 assert。
+- 当前状态：本机的 IDF 安装目录已做过补丁规避（属于“机器级改动”，换机器/重装 IDF 会丢）。如果未来又出现上述启动期 assert，请第一时间回到这条排查。
+
+## 自动抓日志（减少你手工 monitor）
+你只需要做两件事：**进入下载模式（绿闪）**、必要时按一次 Reset。其余（build/flash/抓日志/停机/初步分析）交给脚本。
+
+一键流程（会把串口输出保存到文件，并在出现崩溃/TLS 关键字时自动停下）：
+```powershell
+pwsh -File .\tools\greenflash.ps1 -Port COM6 -CaptureSec 300
+```
+
+日志输出目录：`tools/logs/`（文件名形如 `tab5-COM6-YYYYMMDD-HHMMSS.log`）。
+
+### rst 计数隔离法（“先做减法”）
+当问题不稳定/关键词不好抓时，建议先用“rst 计数”隔离法：忽略第一次正常启动的 `rst:`，在第二次 `rst:`（崩溃后重启）自动停止抓取，便于快速定位“崩前最后 200 行”。
+
+默认行为：`tools/greenflash.ps1` 已开启 isolation（`-IsolationRstOnly:$true`），并设置 `ResetCountToStopTotal=2`。
+
+### 可选 E2E（固件自动打开 IRC 并自动点 Voice）
+为了减少“手工点屏幕按钮”的重复劳动，支持在本机 `.env` 里开启 E2E 自动化：
+```env
+E2E_AUTORUN=1
+```
+开启后（仅对本机 build 生效，不会进 git），固件启动会自动：
+1) 打开 IRC 窗口；2) 等 Wi‑Fi 连接/IRC join 后自动触发一次 Voice。
+
+相关脚本：
+- 串口抓日志：`tools/e2e/Capture-SerialLog.ps1`
+- 一键 build/flash/抓日志：`tools/greenflash.ps1`
+
 ## 验证策略（最小闭环）
 - 代码改动后至少跑一次：`idf.py build`
 - 需要硬件验证时：`idf.py -p COM6 flash ; idf.py -p COM6 monitor`

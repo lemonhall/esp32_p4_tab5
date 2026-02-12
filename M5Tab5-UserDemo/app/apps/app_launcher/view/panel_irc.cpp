@@ -9,13 +9,17 @@
 #include "view.h"
 #include <apps/utils/audio/audio.h>
 #include <apps/utils/fonts/font_manager.h>
+#include <apps/utils/net/bailian_asr_ptt.h>
 #include <apps/utils/net/irc_client.h>
 #include <apps/utils/ui/toast.h>
 #include <apps/utils/ui/window.h>
 #include <hal/hal.h>
+#include <wifi_secrets.h>
 #include <lvgl.h>
 #include <memory>
 #include <algorithm>
+#include <deque>
+#include <mutex>
 #include <mooncake_log.h>
 #include <smooth_ui_toolkit.h>
 #include <smooth_lvgl.h>
@@ -25,6 +29,22 @@ using namespace smooth_ui_toolkit;
 using namespace smooth_ui_toolkit::lvgl_cpp;
 
 static const std::string _tag = "panel-irc";
+
+#ifndef TAB5_ENV_E2E_AUTORUN
+#define TAB5_ENV_E2E_AUTORUN 0
+#endif
+
+static void e2e_click_obj_once_cb(lv_timer_t* t)
+{
+    if (!t) {
+        return;
+    }
+    lv_obj_t* obj = static_cast<lv_obj_t*>(lv_timer_get_user_data(t));
+    if (obj) {
+        lv_obj_send_event(obj, LV_EVENT_CLICKED, nullptr);
+    }
+    lv_timer_del(t);
+}
 
 static std::string wifi_state_to_text(hal::HalBase::WifiState_t st)
 {
@@ -76,6 +96,10 @@ public:
     {
         _window->setScrollbarMode(LV_SCROLLBAR_MODE_OFF);
         sync_window_frame_to_parent();
+
+        _asr_cb_guard = std::make_shared<std::atomic<bool>>(true);
+        _asr_state.store(net::BailianAsrPtt::State::Idle);
+        _last_asr_state = net::BailianAsrPtt::State::Idle;
 
         _status = std::make_unique<Label>(_window->get());
         _status->setTextFont(&lv_font_montserrat_18);
@@ -185,8 +209,18 @@ public:
         _btn_voice->label().setTextColor(lv_color_hex(0xE7E7E7));
         _btn_voice->label().setText("Voice");
         _btn_voice->onClick().connect([&] {
-            audio::play_next_tone_progression();
-            ui::pop_a_toast("TODO: ASR voice input", ui::toast_type::info);
+            // Don't play tones here: recording uses the same codec/I2S path and concurrent play+record
+            // can destabilize the audio driver.
+            if (!GetHAL()->isWifiStaConnected()) {
+                ui::pop_a_toast("Wi-Fi not connected", ui::toast_type::warning, 1800);
+                return;
+            }
+
+            if (_asr.running()) {
+                stop_voice();
+            } else {
+                start_voice();
+            }
         });
 
         _irc_cfg.host = "irc.lemonhall.me";
@@ -199,6 +233,19 @@ public:
         apply_layout(true);
         connect_if_possible(false);
         refresh_status();
+
+        if (_log && TAB5_ENV_E2E_AUTORUN) {
+            _log->addText("* E2E_AUTORUN=1\n");
+        }
+
+        if (TAB5_ENV_E2E_AUTORUN) {
+            _e2e_voice_wait_start_ms = GetHAL()->millis();
+            // In E2E mode, try auto-start voice after Wi-Fi is connected and IRC has had time to join.
+            lv_timer_t* tm = lv_timer_create(e2e_voice_timer_cb, 500, this);
+            if (tm) {
+                lv_timer_set_repeat_count(tm, 120); // ~60s max
+            }
+        }
     }
 
     void onUpdate() override
@@ -216,7 +263,63 @@ public:
             return;
         }
 
+        auto st = _asr_state.load();
+        if (_btn_voice && st != _last_asr_state) {
+            _last_asr_state = st;
+            switch (st) {
+            case net::BailianAsrPtt::State::Recording:
+            case net::BailianAsrPtt::State::Starting:
+            case net::BailianAsrPtt::State::Connecting:
+                _btn_voice->label().setText("REC");
+                break;
+            case net::BailianAsrPtt::State::Finalizing:
+                _btn_voice->label().setText("...");
+                break;
+            default:
+                _btn_voice->label().setText("Voice");
+                break;
+            }
+        }
+
         refresh_status();
+
+        // Drain ASR queues (UI thread)
+        for (;;) {
+            std::string text;
+            {
+                std::lock_guard<std::mutex> lock(_asr_mutex);
+                if (_asr_text_queue.empty()) {
+                    break;
+                }
+                text = _asr_text_queue.front();
+                _asr_text_queue.pop_front();
+            }
+            if (!text.empty()) {
+                ui::pop_a_toast(text, ui::toast_type::success, 4500);
+                if (_log) {
+                    _log->addText("[ASR] " + text + "\n");
+                }
+                _irc.send_privmsg("#tab5", text);
+            }
+        }
+
+        for (;;) {
+            std::string err;
+            {
+                std::lock_guard<std::mutex> lock(_asr_mutex);
+                if (_asr_error_queue.empty()) {
+                    break;
+                }
+                err = _asr_error_queue.front();
+                _asr_error_queue.pop_front();
+            }
+            if (!err.empty()) {
+                ui::pop_a_toast("ASR error", ui::toast_type::error, 2000);
+                if (_log) {
+                    _log->addText("! ASR error: " + err + "\n");
+                }
+            }
+        }
 
         std::string line;
         while (_irc.poll_line(line)) {
@@ -227,6 +330,10 @@ public:
     void onClose() override
     {
         audio::play_next_tone_progression();
+        _asr.stop();
+        if (_asr_cb_guard) {
+            _asr_cb_guard->store(false);
+        }
         _irc.stop();
         _status.reset();
         _log.reset();
@@ -333,6 +440,86 @@ private:
         ui::pop_a_toast("IRC connecting...", ui::toast_type::info);
     }
 
+    bool start_voice()
+    {
+        if (!GetHAL()->isWifiStaConnected()) {
+            ui::pop_a_toast("Wi-Fi not connected", ui::toast_type::warning, 1800);
+            return false;
+        }
+
+        net::BailianAsrPtt::Config cfg;
+        cfg.api_key = TAB5_ENV_BAILIAN_API_KEY;  // from repo .env at build time
+        cfg.model   = "fun-asr-realtime";
+        cfg.max_sentence_silence = 1300;
+        cfg.semantic_punctuation_enabled = false;
+
+        auto guard = _asr_cb_guard;
+        bool ok = _asr.start(
+            cfg,
+            [this, guard](const std::string& text) {
+                if (!guard || !guard->load()) {
+                    return;
+                }
+                std::lock_guard<std::mutex> lock(_asr_mutex);
+                _asr_text_queue.push_back(text);
+            },
+            [this, guard](const std::string& err) {
+                if (!guard || !guard->load()) {
+                    return;
+                }
+                std::lock_guard<std::mutex> lock(_asr_mutex);
+                _asr_error_queue.push_back(err);
+            },
+            [this, guard](net::BailianAsrPtt::State st) {
+                if (!guard || !guard->load()) {
+                    return;
+                }
+                _asr_state.store(st);
+            });
+
+        if (!ok) {
+            ui::pop_a_toast("Voice start failed (check .env)", ui::toast_type::error, 2500);
+            return false;
+        }
+
+        ui::pop_a_toast("Listening...", ui::toast_type::info, 1000);
+        return true;
+    }
+
+    void stop_voice()
+    {
+        _asr.stop();
+        ui::pop_a_toast("Voice stopped", ui::toast_type::gray, 1200);
+    }
+
+    static void e2e_voice_timer_cb(lv_timer_t* t)
+    {
+        auto* self = static_cast<IrcWindow*>(t ? lv_timer_get_user_data(t) : nullptr);
+        if (!self) {
+            return;
+        }
+        if (!TAB5_ENV_E2E_AUTORUN) {
+            lv_timer_del(t);
+            return;
+        }
+        if (self->_asr.running()) {
+            lv_timer_del(t);
+            return;
+        }
+        if (!GetHAL()->isWifiStaConnected()) {
+            return;
+        }
+        // Prefer waiting for IRC join, but don't block forever.
+        if (self->_irc.state() != net::IrcClient::Joined) {
+            uint32_t now = GetHAL()->millis();
+            if (now - self->_e2e_voice_wait_start_ms < 15000) {
+                return;
+            }
+        }
+        (void)self->start_voice();
+        lv_timer_del(t);
+    }
+
     void refresh_status()
     {
         if (GetHAL()->millis() - _last_status_ms < 300) {
@@ -403,10 +590,20 @@ private:
     net::IrcClient _irc;
     net::IrcClient::Config _irc_cfg;
 
+    net::BailianAsrPtt _asr;
+    std::shared_ptr<std::atomic<bool>> _asr_cb_guard;
+    std::atomic<net::BailianAsrPtt::State> _asr_state;
+    net::BailianAsrPtt::State _last_asr_state = net::BailianAsrPtt::State::Idle;
+    std::mutex _asr_mutex;
+    std::deque<std::string> _asr_text_queue;
+    std::deque<std::string> _asr_error_queue;
+
     lv_obj_t* _parent = nullptr;
     lv_display_t* _disp = nullptr;
     lv_display_rotation_t _prev_rotation = LV_DISPLAY_ROTATION_0;
     bool _restore_rotation_on_close = false;
+
+    uint32_t _e2e_voice_wait_start_ms = 0;
 };
 
 void PanelIrc::init()
@@ -430,6 +627,14 @@ void PanelIrc::init()
         _window->init(lv_screen_active());
         _window->open();
     });
+
+    if (TAB5_ENV_E2E_AUTORUN) {
+        // Delay a bit so launcher finishes its init/animation, then "click" IRC automatically.
+        lv_timer_t* tm = lv_timer_create(e2e_click_obj_once_cb, 1200, _btn_irc->raw_ptr());
+        if (tm) {
+            lv_timer_set_repeat_count(tm, 1);
+        }
+    }
 }
 
 void PanelIrc::update(bool)

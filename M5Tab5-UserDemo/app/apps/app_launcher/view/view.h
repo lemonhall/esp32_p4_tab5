@@ -294,6 +294,7 @@ public:
 
 private:
     std::unique_ptr<smooth_ui_toolkit::lvgl_cpp::Container> _btn_irc;
+    std::unique_ptr<smooth_ui_toolkit::lvgl_cpp::Label> _label_irc;
     std::unique_ptr<ui::Window> _window;
 };
 

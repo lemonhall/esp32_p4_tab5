@@ -228,7 +228,16 @@ void PanelIrc::init()
     _btn_irc = std::make_unique<Container>(lv_screen_active());
     _btn_irc->align(LV_ALIGN_CENTER, 610, 300);
     _btn_irc->setSize(110, 110);
-    _btn_irc->setOpa(0);
+    _btn_irc->setRadius(24);
+    _btn_irc->setBorderWidth(0);
+    _btn_irc->setBgColor(lv_color_hex(0x2D5BFF));
+    _btn_irc->setBgOpa(LV_OPA_80);
+
+    _label_irc = std::make_unique<Label>(_btn_irc->get());
+    _label_irc->setAlign(LV_ALIGN_CENTER);
+    _label_irc->setText("IRC");
+    _label_irc->setTextFont(&lv_font_montserrat_22);
+    _label_irc->setTextColor(lv_color_hex(0xFFFFFF));
     _btn_irc->onClick().connect([&] {
         audio::play_next_tone_progression();
         _window = std::make_unique<IrcWindow>();
